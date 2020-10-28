@@ -20,51 +20,54 @@
 //
 //
 
-template <typename T>
+template<typename T>
 class CSetPointerConst
 {
-	public:
+    public:
 
-		CSetPointerConst(const T& ptr) { mPtr = &ptr; };
-		CSetPointerConst(const T* ptr) { mPtr = ptr; };
+        CSetPointerConst(const T& ptr) { mPtr = &ptr; }
+        CSetPointerConst(const T* ptr) { mPtr = ptr; }
 
-		bool operator<(const CSetPointerConst& k) const
-		{
-      return *mPtr < *(k.mPtr);
-		}
+        bool operator<(const CSetPointerConst& k) const
+        {
+            return *mPtr < *(k.mPtr);
+        }
 
-		bool operator==(const CSetPointerConst& k) const
-		{
-      return *mPtr == *(k.mPtr);
-		}
 
-		const T* mPtr;
+        bool operator==(const CSetPointerConst& k) const
+        {
+            return *mPtr == *(k.mPtr);
+        }
+
+
+        const T* mPtr;
 };
 
 //
 //
 //
 
-template <typename T>
+template<typename T>
 class CSetPointer
 {
-	public:
+    public:
 
-		CSetPointer(T& ptr) { mPtr = &ptr; };
-		CSetPointer(T* ptr) { mPtr = ptr; };
+        CSetPointer(T& ptr) { mPtr = &ptr; }
+        CSetPointer(T* ptr) { mPtr = ptr; }
 
-		bool operator<(const CSetPointer& k) const
-		{
-      return *mPtr < *(k.mPtr);
-		}
-
-		bool operator==(const CSetPointer& k) const
-		{
-      return *mPtr == *(k.mPtr);
-		}
+        bool operator<(const CSetPointer& k) const
+        {
+            return *mPtr < *(k.mPtr);
+        }
 
 
-		T* mPtr;
+        bool operator==(const CSetPointer& k) const
+        {
+            return *mPtr == *(k.mPtr);
+        }
+
+
+        T* mPtr;
 };
 
 

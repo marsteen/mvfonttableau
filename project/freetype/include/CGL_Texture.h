@@ -20,20 +20,20 @@
 
 class CGL_Texture : public CDataRect
 {
-	public:
+    public:
 
-		CGL_Texture()
-		{
-			mTexHandle = 0;
-		}
-
-		bool LoadTextureTga(const char* TextureFilename);
-		bool CreateTexture(const CDataRect* glib, bool CreateMipFap=false);
-		void DeleteTexture();
+        CGL_Texture()
+        {
+            mTexHandle = 0;
+        }
 
 
-		unsigned int mTexHandle;
+        bool LoadTextureTga(const char* TextureFilename);
+        bool CreateTexture(const CDataRect* glib, bool CreateMipFap = false);
+        void DeleteTexture();
 
+
+        unsigned int mTexHandle;
 };
 
 

@@ -34,313 +34,314 @@
 
 namespace NStringTool
 {
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    Split
-	//
-	//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    Split
+    //
+    //---------------------------------------------------------------------------
 
-	int Split(std::string InputString, stringvector* ResultVector, char SplitChar)
-	{
-		int OldIndex = 0;
-		int NewIndex;
-
-		do
-		{
-			NewIndex = InputString.find(SplitChar, OldIndex);
-
-			if (NewIndex != std::string::npos)
-			{
-				ResultVector->push_back(InputString.substr(OldIndex, NewIndex - OldIndex));
-				OldIndex = NewIndex + 1;
-			}
-			else
-			{
-				ResultVector->push_back(InputString.substr(OldIndex, InputString.size() - OldIndex));
-			}
-		}
-		while (NewIndex != std::string::npos);
-
-		return ResultVector->size();
-	}
-
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    UnSplit
-	//
-	//---------------------------------------------------------------------------
-	
-	std::string UnSplit(const stringvector& sp, char SplitChar)
-	{
-	  std::string rs = sp[0];
-	  
-	  
-	  for (int i = 1; i < sp.size(); i++)
-	  {
-	    rs += SplitChar;	     
-	    rs += sp[i];
-	  }	
-	  return rs;
-	}
-	
-	
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    SplitByString
-	//
-	//---------------------------------------------------------------------------
-
-	int SplitByString(std::string InputString, stringvector* ResultVector, const std::string spstring)
-	{
-		int OldIndex = 0;
-		int NewIndex;
-
-		do
-		{
-			NewIndex = InputString.find(spstring, OldIndex);
-
-			if (NewIndex != std::string::npos)
-			{
-				ResultVector->push_back(InputString.substr(OldIndex, NewIndex - OldIndex));
-				OldIndex = NewIndex + spstring.size();
-			}
-			else
-			{
-				ResultVector->push_back(InputString.substr(OldIndex, InputString.size() - OldIndex));
-			}
-		}
-		while (NewIndex != std::string::npos);
-
-		return ResultVector->size();
-	}
-	
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    ReplaceStrings
-	//
-	//---------------------------------------------------------------------------
-
-	int ReplaceStrings(std::string& InputString, const std::string OldString, const std::string NewString)
-	{
-	  stringvector sp;
-	  
-	  
-	  SplitByString(InputString, &sp, OldString);
-	  
-	  InputString.clear();
-	  for (int i = 0; i < sp.size(); i++)
-	  {
-	    InputString += sp[i];
-	    
-	    if (i < sp.size()-1)
-	    {	    
-	      InputString += NewString;
-	    }
-	  }
-	  return sp.size();
-	}
-	
-
-  //---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    Split
-	//
-	//---------------------------------------------------------------------------
-
-	int Split(std::string InputString, stringvector* ResultVector, const char* SplitChars)
-	{
-		int OldIndex = 0;
-		int SplitCharAnz = strlen(SplitChars);
-		bool finished = false;
-		int n  = 0;
-
-		while (!finished)
-		{
-			int MinIndex = (int) std::string::npos;
-			
-			int sc = -1;
-			for (int i = 0; i < SplitCharAnz; i++)
-			{					
-				int NewIndex = InputString.find(SplitChars[i], OldIndex);
-				
-				if (NewIndex != std::string::npos)
-				{				
-					if ((NewIndex < MinIndex) || (MinIndex ==  std::string::npos))
-					{
-						MinIndex = NewIndex;
-						sc = SplitChars[i];
-					}
-				}
-			}
-			
-			//
-			//
-			//
-
-			if (sc >= 0)
-			{
-				
-				std::string part = InputString.substr(OldIndex, MinIndex - OldIndex + 1);
-				
-				ResultVector->push_back(part);
-				
-				OldIndex = MinIndex + 1;
-			}
-			else
-			{
-				ResultVector->push_back(InputString.substr(OldIndex, InputString.size() - OldIndex));
-				finished = true;
-			}
-			n++;
-		}
-
-		return ResultVector->size();
-	}	
-	
-  //---------------------------------------------------------------------------
-  //
-  // Namespace:  NStringTool
-  // Methode:    Split
-  //
-  // Splittet einen String in zwei Teile durch das Zeichen SplitChar
-  //
-  // Return     true = Zeichen gefunden
-  //            false = Zeichen NICHT gefunden (kein Ergebnis)
-  //
-  //---------------------------------------------------------------------------
-
-  bool Split(std::string InputString, std::string& s1, std::string& s2, char SplitChar)
-  {
-    bool r;
-    int OldIndex = 0;
-    int NewIndex;
-
-    NewIndex = InputString.find(SplitChar, OldIndex);
-
-    if (NewIndex != std::string::npos)
+    int Split(std::string InputString, stringvector* ResultVector, char SplitChar)
     {
-      s1 = InputString.substr(OldIndex, NewIndex - OldIndex);
-      OldIndex = NewIndex + 1;
+        int OldIndex = 0;
+        int NewIndex;
 
-      s2 = InputString.substr(OldIndex, InputString.size() - OldIndex);
+        do
+        {
+            NewIndex = InputString.find(SplitChar, OldIndex);
 
-      r = true;
-    }
-    else
-    {
-      r = false;
+            if (NewIndex != std::string::npos)
+            {
+                ResultVector->push_back(InputString.substr(OldIndex, NewIndex - OldIndex));
+                OldIndex = NewIndex + 1;
+            }
+            else
+            {
+                ResultVector->push_back(InputString.substr(OldIndex, InputString.size() - OldIndex));
+            }
+        }while (NewIndex != std::string::npos);
+
+        return ResultVector->size();
     }
 
-    return r;
-  }
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    UnSplit
+    //
+    //---------------------------------------------------------------------------
+
+    std::string UnSplit(const stringvector& sp, char SplitChar)
+    {
+        std::string rs = sp[0];
 
 
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    Split
-	//
-	//---------------------------------------------------------------------------
+        for (int i = 1; i < sp.size(); i++)
+        {
+            rs += SplitChar;
+            rs += sp[i];
+        }
+        return rs;
+    }
 
-	int Split(std::string InputString, stringvector* ResultVector, char SplitChar, const char b0, const char b1)
-	{
-		int BrackedOpen = 0;
-		std::string InputStringTrimmed;
 
-		for (int i = 0; i < InputString.size(); i++)
-		{
-			char c = InputString.at(i);
-			if (c == b0)
-			{
-				BrackedOpen += 1;
-			}
-			else
-			if (c == b1)
-			{
-				BrackedOpen -= 1;
-			}
-			else
-			{
-				if ((BrackedOpen > 0) && (c == SplitChar))
-				{
-					InputStringTrimmed += '*';
-				}
-				else
-				{
-					InputStringTrimmed += c;
-				}
-			}
-		}
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    SplitByString
+    //
+    //---------------------------------------------------------------------------
 
-		//std::cout << "InputStringTrimmed=" << InputStringTrimmed << std::endl;
-		int r = Split(InputStringTrimmed, ResultVector, SplitChar);
+    int SplitByString(std::string InputString, stringvector* ResultVector, const std::string spstring)
+    {
+        int OldIndex = 0;
+        int NewIndex;
 
-		for (stringvector::iterator it = ResultVector->begin(); it != ResultVector->end(); ++it)
-		{
-			for (int i = 0; i < it->size(); i++)
-			{
-				if ((*it)[i] == '*')
-				{
-					(*it)[i] = SplitChar;
-				}
-			}
+        do
+        {
+            NewIndex = InputString.find(spstring, OldIndex);
 
-		}
-		return r;
-	}
-	
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    ReplaceApp
-	//
-	//---------------------------------------------------------------------------
+            if (NewIndex != std::string::npos)
+            {
+                ResultVector->push_back(InputString.substr(OldIndex, NewIndex - OldIndex));
+                OldIndex = NewIndex + spstring.size();
+            }
+            else
+            {
+                ResultVector->push_back(InputString.substr(OldIndex, InputString.size() - OldIndex));
+            }
+        }while (NewIndex != std::string::npos);
 
-	std::string ReplaceApp(std::string InStr, std::string NewApp)
-	{
-		std::string NewName;
-		int PointPos= InStr.rfind('.');
-		
-		if (PointPos != std::string::npos)
-		{
-			NewName = InStr.substr(0, PointPos) + NewApp;
-		}
-		else
-		{
-			NewName = InStr + NewApp;
-		}
-		return NewName;
-	}
-	
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    FileBasename
-	//
-	//---------------------------------------------------------------------------
+        return ResultVector->size();
+    }
 
-	std::string FileBasename(const std::string InStr)
-	{
-		std::string NewName;
-		int PointPos= InStr.rfind('.');
-		
-		if (PointPos != std::string::npos)
-		{
-			NewName = InStr.substr(0, PointPos);
-		}
-		else
-		{
-		  NewName = InStr;	
-		}
-		return NewName;
-	}
-	
-		
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    ReplaceStrings
+    //
+    //---------------------------------------------------------------------------
+
+    int ReplaceStrings(std::string& InputString, const std::string OldString, const std::string NewString)
+    {
+        stringvector sp;
+
+
+        SplitByString(InputString, &sp, OldString);
+
+        InputString.clear();
+        for (int i = 0; i < sp.size(); i++)
+        {
+            InputString += sp[i];
+
+            if (i < sp.size()-1)
+            {
+                InputString += NewString;
+            }
+        }
+        return sp.size();
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    Split
+    //
+    //---------------------------------------------------------------------------
+
+    int Split(std::string InputString, stringvector* ResultVector, const char* SplitChars)
+    {
+        int OldIndex = 0;
+        int SplitCharAnz = strlen(SplitChars);
+        bool finished = false;
+        int n = 0;
+
+        while (!finished)
+        {
+            int MinIndex = (int)std::string::npos;
+
+            int sc = -1;
+            for (int i = 0; i < SplitCharAnz; i++)
+            {
+                int NewIndex = InputString.find(SplitChars[i], OldIndex);
+
+                if (NewIndex != std::string::npos)
+                {
+                    if ((NewIndex < MinIndex) || (MinIndex == std::string::npos))
+                    {
+                        MinIndex = NewIndex;
+                        sc = SplitChars[i];
+                    }
+                }
+            }
+
+            //
+            //
+            //
+
+            if (sc >= 0)
+            {
+                std::string part = InputString.substr(OldIndex, MinIndex - OldIndex + 1);
+
+                ResultVector->push_back(part);
+
+                OldIndex = MinIndex + 1;
+            }
+            else
+            {
+                ResultVector->push_back(InputString.substr(OldIndex, InputString.size() - OldIndex));
+                finished = true;
+            }
+            n++;
+        }
+
+        return ResultVector->size();
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    Split
+    //
+    // Splittet einen String in zwei Teile durch das Zeichen SplitChar
+    //
+    // Return     true = Zeichen gefunden
+    //            false = Zeichen NICHT gefunden (kein Ergebnis)
+    //
+    //---------------------------------------------------------------------------
+
+    bool Split(std::string InputString, std::string& s1, std::string& s2, char SplitChar)
+    {
+        bool r;
+        int OldIndex = 0;
+        int NewIndex;
+
+        NewIndex = InputString.find(SplitChar, OldIndex);
+
+        if (NewIndex != std::string::npos)
+        {
+            s1 = InputString.substr(OldIndex, NewIndex - OldIndex);
+            OldIndex = NewIndex + 1;
+
+            s2 = InputString.substr(OldIndex, InputString.size() - OldIndex);
+
+            r = true;
+        }
+        else
+        {
+            r = false;
+        }
+
+        return r;
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    Split
+    //
+    //---------------------------------------------------------------------------
+
+    int Split(std::string InputString, stringvector* ResultVector, char SplitChar, const char b0, const char b1)
+    {
+        int BrackedOpen = 0;
+        std::string InputStringTrimmed;
+
+        for (int i = 0; i < InputString.size(); i++)
+        {
+            char c = InputString.at(i);
+            if (c == b0)
+            {
+                BrackedOpen += 1;
+            }
+            else
+            if (c == b1)
+            {
+                BrackedOpen -= 1;
+            }
+            else
+            {
+                if ((BrackedOpen > 0) && (c == SplitChar))
+                {
+                    InputStringTrimmed += '*';
+                }
+                else
+                {
+                    InputStringTrimmed += c;
+                }
+            }
+        }
+
+        //std::cout << "InputStringTrimmed=" << InputStringTrimmed << std::endl;
+        int r = Split(InputStringTrimmed, ResultVector, SplitChar);
+
+        for (stringvector::iterator it = ResultVector->begin(); it != ResultVector->end(); ++it)
+        {
+            for (int i = 0; i < it->size(); i++)
+            {
+                if ((*it)[i] == '*')
+                {
+                    (*it)[i] = SplitChar;
+                }
+            }
+        }
+        return r;
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    ReplaceApp
+    //
+    //---------------------------------------------------------------------------
+
+    std::string ReplaceApp(std::string InStr, std::string NewApp)
+    {
+        std::string NewName;
+        int PointPos = InStr.rfind('.');
+
+        if (PointPos != std::string::npos)
+        {
+            NewName = InStr.substr(0, PointPos) + NewApp;
+        }
+        else
+        {
+            NewName = InStr + NewApp;
+        }
+        return NewName;
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    FileBasename
+    //
+    //---------------------------------------------------------------------------
+
+    std::string FileBasename(const std::string InStr)
+    {
+        std::string NewName;
+        int PointPos = InStr.rfind('.');
+
+        if (PointPos != std::string::npos)
+        {
+            NewName = InStr.substr(0, PointPos);
+        }
+        else
+        {
+            NewName = InStr;
+        }
+        return NewName;
+    }
+
+
 //---------------------------------------------------------------------------
 //
 // Klasse:    NStringTool
@@ -351,19 +352,21 @@ namespace NStringTool
 //
 //---------------------------------------------------------------------------
 
-std::string RemoveChars(const std::string str, const std::string rm)
-{
-  std::string erg;
-  for (int i = 0; i < str.size(); i++)
-  {
-    if (rm.find(str[i]) == std::string::npos)
+    std::string RemoveChars(const std::string str, const std::string rm)
     {
-      erg += str[i];
-    }  
-  }
-  return erg;
-}		
-		
+        std::string erg;
+
+        for (int i = 0; i < str.size(); i++)
+        {
+            if (rm.find(str[i]) == std::string::npos)
+            {
+                erg += str[i];
+            }
+        }
+        return erg;
+    }
+
+
 //---------------------------------------------------------------------------
 //
 // Klasse:    NStringTool
@@ -371,22 +374,21 @@ std::string RemoveChars(const std::string str, const std::string rm)
 //
 //---------------------------------------------------------------------------
 
-std::string ExtractPath(const std::string FullPathname)
-{
-  
-  std::string Filename;
-  int pos = FullPathname.rfind('/');
-  
-  if (pos != std::string::npos)    
-  {
-    Filename = FullPathname.substr(0, pos);  
-	}
-	else
-	{
-	  Filename = FullPathname;
-	}
-  return Filename;
-}
+    std::string ExtractPath(const std::string FullPathname)
+    {
+        std::string Filename;
+        int pos = FullPathname.rfind('/');
+
+        if (pos != std::string::npos)
+        {
+            Filename = FullPathname.substr(0, pos);
+        }
+        else
+        {
+            Filename = FullPathname;
+        }
+        return Filename;
+    }
 
 
 //---------------------------------------------------------------------------
@@ -396,22 +398,21 @@ std::string ExtractPath(const std::string FullPathname)
 //
 //---------------------------------------------------------------------------
 
-std::string ExtractFilename(const std::string FullPathname)
-{
-  
-  std::string Filename;
-  int pos = FullPathname.rfind('/');
-  
-  if (pos != std::string::npos)    
-  {
-    Filename = FullPathname.substr(pos + 1);  
-	}
-	else
-	{
-	  Filename = FullPathname;
-	}
-  return Filename;
-}
+    std::string ExtractFilename(const std::string FullPathname)
+    {
+        std::string Filename;
+        int pos = FullPathname.rfind('/');
+
+        if (pos != std::string::npos)
+        {
+            Filename = FullPathname.substr(pos + 1);
+        }
+        else
+        {
+            Filename = FullPathname;
+        }
+        return Filename;
+    }
 
 
 //---------------------------------------------------------------------------
@@ -425,92 +426,88 @@ std::string ExtractFilename(const std::string FullPathname)
 //
 //---------------------------------------------------------------------------
 
-std::string StripExt(const std::string Filename)
-{
-  
-  std::string FilenameStripped;
-  int pos = Filename.rfind('.');
-  
-  if (pos != std::string::npos)    
-  {
-    FilenameStripped = Filename.substr(0, pos);  
-	}
-	else
-	{
-	  FilenameStripped = Filename;
-	}
-  return FilenameStripped;
-}
-	
-		
+    std::string StripExt(const std::string Filename)
+    {
+        std::string FilenameStripped;
+        int pos = Filename.rfind('.');
+
+        if (pos != std::string::npos)
+        {
+            FilenameStripped = Filename.substr(0, pos);
+        }
+        else
+        {
+            FilenameStripped = Filename;
+        }
+        return FilenameStripped;
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    Trim
+    //
+    //---------------------------------------------------------------------------
+
+    std::string Trim(std::string InStr, const char* trimChars)
+    {
+        std::string OutStr;
+        std::string::size_type StartIndex;
+        std::string::size_type EndIndex;
+
+        StartIndex = InStr.find_first_not_of(trimChars);
 
 
 
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    Trim
-	//
-	//---------------------------------------------------------------------------
+        if (StartIndex != std::string::npos)
+        {
+            EndIndex = InStr.find_last_not_of(trimChars);
+            if (EndIndex != std::string::npos)
+            {
+                if (EndIndex >= StartIndex)
+                {
+                    OutStr = InStr.substr(StartIndex, EndIndex - StartIndex + 1);
+                }
+            }
+        }
 
-	std::string Trim(std::string InStr, const char* trimChars)
-	{
-		std::string OutStr;
-		std::string::size_type StartIndex;
-		std::string::size_type EndIndex;
-
-		StartIndex = InStr.find_first_not_of(trimChars);
-
-
-
-		if (StartIndex != std::string::npos)
-		{
-			EndIndex = InStr.find_last_not_of(trimChars);
-			if (EndIndex != std::string::npos)
-			{
-				if (EndIndex >= StartIndex)
-				{
-					OutStr = InStr.substr(StartIndex, EndIndex - StartIndex + 1);
-				}
-			}
-		}
-
-		return OutStr;
-	}
+        return OutStr;
+    }
 
 
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    TrimValid
+    //
+    //---------------------------------------------------------------------------
 
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    TrimValid
-	//
-	//---------------------------------------------------------------------------
+    std::string TrimValid(std::string InStr, const char* validChars)
+    {
+        std::string OutStr;
+        std::string::size_type StartIndex;
+        std::string::size_type EndIndex;
 
-	std::string TrimValid(std::string InStr, const char* validChars)
-	{
-		std::string OutStr;
-		std::string::size_type StartIndex;
-		std::string::size_type EndIndex;
-
-		StartIndex = InStr.find_first_of(validChars);
+        StartIndex = InStr.find_first_of(validChars);
 
 
 
-		if (StartIndex != std::string::npos)
-		{
-			EndIndex = InStr.find_last_of(validChars);
-			if (EndIndex != std::string::npos)
-			{
-				if (EndIndex >= StartIndex)
-				{
-					OutStr = InStr.substr(StartIndex, EndIndex - StartIndex + 1);
-				}
-			}
-		}
+        if (StartIndex != std::string::npos)
+        {
+            EndIndex = InStr.find_last_of(validChars);
+            if (EndIndex != std::string::npos)
+            {
+                if (EndIndex >= StartIndex)
+                {
+                    OutStr = InStr.substr(StartIndex, EndIndex - StartIndex + 1);
+                }
+            }
+        }
 
-		return OutStr;
-	}
+        return OutStr;
+    }
+
 
 //---------------------------------------------------------------------------
 //
@@ -519,14 +516,14 @@ std::string StripExt(const std::string Filename)
 //
 //---------------------------------------------------------------------------
 
-void Trim(stringvector& sv, const char* trimChars)
-{
-	for (int i = 0; i < sv.size(); i++)
-	{
-		sv[i] = Trim(sv[i], trimChars);
-	}
+    void Trim(stringvector& sv, const char* trimChars)
+    {
+        for (int i = 0; i < sv.size(); i++)
+        {
+            sv[i] = Trim(sv[i], trimChars);
+        }
+    }
 
-}
 
 //---------------------------------------------------------------------------
 //
@@ -535,123 +532,123 @@ void Trim(stringvector& sv, const char* trimChars)
 //
 //---------------------------------------------------------------------------
 
-void TrimValid(stringvector& sv, const char* validChars)
-{
-	for (int i = 0; i < sv.size(); i++)
-	{
-		sv[i] = TrimValid(sv[i], validChars);
-	}
-
-}
-
+    void TrimValid(stringvector& sv, const char* validChars)
+    {
+        for (int i = 0; i < sv.size(); i++)
+        {
+            sv[i] = TrimValid(sv[i], validChars);
+        }
+    }
 
 
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    ReadLine
-	//
-	//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    ReadLine
+    //
+    //---------------------------------------------------------------------------
 
-	int ReadLine(std::ifstream& ifile, std::string* Line)
-	{
-		char ch;
-		bool EndLine = false;
+    int ReadLine(std::ifstream& ifile, std::string* Line)
+    {
+        char ch;
+        bool EndLine = false;
 
-		Line->clear();
-		do
-		{
-			ifile.get(ch);
-			if (!ifile.eof())
-			{
-				if (ch != 0x0D)
-				{
-					if (ch != 0x0A)
-					{
-						Line->push_back(ch);
-					}
-					else
-					{
-						EndLine = true;
-					}
-				}
-			}
-			else
-			{
-				EndLine = true;
-			}
-		}
-		while (!EndLine);
-		return true;
-	}
-
-
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    GetExtension
-	//
-	//
-	//
-	//---------------------------------------------------------------------------
+        Line->clear();
+        do
+        {
+            ifile.get(ch);
+            if (!ifile.eof())
+            {
+                if (ch != 0x0D)
+                {
+                    if (ch != 0x0A)
+                    {
+                        Line->push_back(ch);
+                    }
+                    else
+                    {
+                        EndLine = true;
+                    }
+                }
+            }
+            else
+            {
+                EndLine = true;
+            }
+        }while (!EndLine);
+        return true;
+    }
 
 
-	std::string GetExtension(const std::string& InStr)
-	{
-		std::string::size_type idx = InStr.rfind('.');
-		if (idx == std::string::npos)
-		{
-			return "";
-		}
-		return InStr.substr(idx);
-	}
-
-	
-	
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    RemoveExtension
-	//
-	//
-	//
-	//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    GetExtension
+    //
+    //
+    //
+    //---------------------------------------------------------------------------
 
 
-	std::string RemoveExtension(const std::string& InStr)
-	{
-		std::string::size_type idx = InStr.rfind('.');
-		if (idx == std::string::npos)
-		{
-			return InStr;
-		}
-		return InStr.substr(0, idx);
-	}
+    std::string GetExtension(const std::string& InStr)
+    {
+        std::string::size_type idx = InStr.rfind('.');
 
-	//---------------------------------------------------------------------------
-	//
-	// Namespace:  NStringTool
-	// Methode:    Cut
-	//
-	// Schneidet den InStr VOR CutChar ab
-	//
-	// Beispiel:
-	//
-	//   Aus c:\temp\datei.txt wird c:\temp
-	//   (Trennzeichen: \)
-	//
-	//
-	//---------------------------------------------------------------------------
+        if (idx == std::string::npos)
+        {
+            return "";
+        }
+        return InStr.substr(idx);
+    }
 
-	std::string Cut(const std::string& InStr, char CutChar)
-	{
-		std::string::size_type idx = InStr.rfind(CutChar);
-		if (idx == std::string::npos)
-		{
-			return InStr;
-		}
-		return InStr.substr(0, idx);
-	}
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    RemoveExtension
+    //
+    //
+    //
+    //---------------------------------------------------------------------------
+
+
+    std::string RemoveExtension(const std::string& InStr)
+    {
+        std::string::size_type idx = InStr.rfind('.');
+
+        if (idx == std::string::npos)
+        {
+            return InStr;
+        }
+        return InStr.substr(0, idx);
+    }
+
+
+    //---------------------------------------------------------------------------
+    //
+    // Namespace:  NStringTool
+    // Methode:    Cut
+    //
+    // Schneidet den InStr VOR CutChar ab
+    //
+    // Beispiel:
+    //
+    //   Aus c:\temp\datei.txt wird c:\temp
+    //   (Trennzeichen: \)
+    //
+    //
+    //---------------------------------------------------------------------------
+
+    std::string Cut(const std::string& InStr, char CutChar)
+    {
+        std::string::size_type idx = InStr.rfind(CutChar);
+
+        if (idx == std::string::npos)
+        {
+            return InStr;
+        }
+        return InStr.substr(0, idx);
+    }
 
 
 //---------------------------------------------------------------------------
@@ -663,20 +660,20 @@ void TrimValid(stringvector& sv, const char* validChars)
 //
 //---------------------------------------------------------------------------
 
-std::string Shorten(const std::string& InString, const std::string Punkte, int Limit)
-{
-	std::string OutString;
+    std::string Shorten(const std::string& InString, const std::string Punkte, int Limit)
+    {
+        std::string OutString;
 
-	if (InString.size() < Limit)
-	{
-		OutString = InString;
-	}
-	else
-	{
-		OutString = InString.substr(0, Limit) + Punkte;
-	}
-	return OutString;
-}
+        if (InString.size() < Limit)
+        {
+            OutString = InString;
+        }
+        else
+        {
+            OutString = InString.substr(0, Limit) + Punkte;
+        }
+        return OutString;
+    }
 
 
 //---------------------------------------------------------------------------
@@ -688,10 +685,11 @@ std::string Shorten(const std::string& InString, const std::string Punkte, int L
 //
 //---------------------------------------------------------------------------
 
-std::string First(const std::string& InString, int n)
-{
-	return InString.substr(n);
-}
+    std::string First(const std::string& InString, int n)
+    {
+        return InString.substr(n);
+    }
+
 
 //---------------------------------------------------------------------------
 //
@@ -702,10 +700,10 @@ std::string First(const std::string& InString, int n)
 //
 //---------------------------------------------------------------------------
 
-std::string Last(const std::string& InString, int n)
-{
-	return InString.substr(InString.size() - n, n);
-}
+    std::string Last(const std::string& InString, int n)
+    {
+        return InString.substr(InString.size() - n, n);
+    }
 
 
 //---------------------------------------------------------------------------
@@ -717,92 +715,91 @@ std::string Last(const std::string& InString, int n)
 //
 //---------------------------------------------------------------------------
 
-std::string LineBreak(const std::string& str, int n)
-{
-	std::string nstr;
-	if (str.size() < n)
-	{
-		return str;
-	}
-	else
-	{
-		int k = 0;
-		
-		while (k < str.size())
-		{										
-			if (k + n < str.size())
-			{				
-				nstr += str.substr(k,  n) + '\n';
-			}
-			else
-			{			  
-				nstr += str.substr(k,  str.size() - k);
-			}
-			k += n;					
-		}		
-	}
-	return nstr;
-}
+    std::string LineBreak(const std::string& str, int n)
+    {
+        std::string nstr;
+
+        if (str.size() < n)
+        {
+            return str;
+        }
+        else
+        {
+            int k = 0;
+
+            while (k < str.size())
+            {
+                if (k + n < str.size())
+                {
+                    nstr += str.substr(k, n) + '\n';
+                }
+                else
+                {
+                    nstr += str.substr(k, str.size() - k);
+                }
+                k += n;
+            }
+        }
+        return nstr;
+    }
 
 
 /*
-struct equal_ignore_case
-{
-    equal_ignore_case();
-    bool operator()(char ch1, char ch2) 
-		{
-        return toupper(ch1) == toupper(ch2);
-    }    
-};
-*/
+ * struct equal_ignore_case
+ * {
+ *  equal_ignore_case();
+ *  bool operator()(char ch1, char ch2)
+ *      {
+ *      return toupper(ch1) == toupper(ch2);
+ *  }
+ * };
+ */
+    void ToUpper(std::string& str)
+    {
+        for (std::string::iterator it = str.begin(); it != str.end(); ++it)
+        {
+            *it = toupper(*it);
+        }
+    }
 
-
-void ToUpper(std::string& str)
-{
-  for (std::string::iterator it = str.begin(); it != str.end(); ++it)
-	{
-		*it = toupper(*it);
-	}
-}
 
 /*
-static bool equal_ignore_case(char ch1, char ch2)
-{
-	return toupper(ch1) == toupper(ch2);
-}
+ * static bool equal_ignore_case(char ch1, char ch2)
+ * {
+ *  return toupper(ch1) == toupper(ch2);
+ * }
+ *
+ * int Contains(const std::string& str1, std::string& str2)
+ * {
+ *  int r = 0;
+ *
+ *  if (str2.size() > 0)
+ *  {
+ *      std::string::const_iterator it = std::search(str1.begin(), str1.end(),  str2.begin(), str2.end(), equal_ignore_case);
+ *      r = ((it == str1.end()) ? 0 : 1);
+ *  }
+ *
+ *  return r;
+ * }
+ */
+    int Contains(const std::string& str1, const std::string& str2)
+    {
+        int r = 0;
 
-int Contains(const std::string& str1, std::string& str2)
-{
-	int r = 0;
-	
-	if (str2.size() > 0)
-	{	
-		std::string::const_iterator it = std::search(str1.begin(), str1.end(),  str2.begin(), str2.end(), equal_ignore_case);
-		r = ((it == str1.end()) ? 0 : 1);
-	}
-	
-	return r;
-}
-*/
+        if (str2.size() > 0)
+        {
+            std::string u1 = str1;
+            std::string u2 = str2;
 
-int Contains(const std::string& str1, const std::string& str2)
-{
-	int r = 0;
-	if (str2.size() > 0)
-	{	
-		std::string u1 = str1;
-		std::string u2 = str2; 
-		
-		ToUpper(u1);
-		ToUpper(u2);
+            ToUpper(u1);
+            ToUpper(u2);
 
-		
-		r = ((u1.find(u2) ==  std::string::npos) ? 0 : 1);		
-	}
-	
-	return r;
-}
 
+            r = ((u1.find(u2) == std::string::npos) ? 0 : 1);
+        }
+
+        return r;
+    }
 
 
 //---------------------------------------------------------------------------
@@ -810,53 +807,56 @@ int Contains(const std::string& str1, const std::string& str2)
 // Namespace:  NStringTool
 // Methode:    WordBreak
 //
-// Zeilenumbruch nach n Zeichen 
+// Zeilenumbruch nach n Zeichen
 // Zeilenumbruch \n wird zwischen zwei Worten einfuegt
-// 
+//
 //---------------------------------------------------------------------------
 
-std::string WordBreak(const std::string& str, int n)
-{
-	std::string nstr;
-	
-	if (str.size() < n)
-	{
-		return str;
-	}
-	else
-	{
-		stringvector sp;
-		std::string lstr;
+    std::string WordBreak(const std::string& str, int n)
+    {
+        std::string nstr;
 
-		Split(str, &sp, ' ');		
-		const int len = sp.size();
-		
-		for (int i = 0; i < len; i++)
-		{			
-      if (lstr.size() + sp[i].size() < n)
-			{
-			  lstr += sp[i];
-				if (i < len-1) lstr += " ";
-			}
-			else
-			{
-			  nstr += lstr + '\n';			  
-			  lstr = sp[i];
-				if (i < len-1) lstr += " ";
-			}			
-		}
-		nstr += lstr;
-		
-		return nstr;
-	}		
-		
-	
-	
-	
-	return nstr;
-}
+        if (str.size() < n)
+        {
+            return str;
+        }
+        else
+        {
+            stringvector sp;
+            std::string lstr;
+
+            Split(str, &sp, ' ');
+            const int len = sp.size();
+
+            for (int i = 0; i < len; i++)
+            {
+                if (lstr.size() + sp[i].size() < n)
+                {
+                    lstr += sp[i];
+                    if (i < len-1)
+                    {
+                        lstr += " ";
+                    }
+                }
+                else
+                {
+                    nstr += lstr + '\n';
+                    lstr = sp[i];
+                    if (i < len-1)
+                    {
+                        lstr += " ";
+                    }
+                }
+            }
+            nstr += lstr;
+
+            return nstr;
+        }
 
 
+
+        return nstr;
+    }
 
 
 //---------------------------------------------------------------------------
@@ -868,17 +868,17 @@ std::string WordBreak(const std::string& str, int n)
 //
 //---------------------------------------------------------------------------
 
-std::string ToUpper(const std::string& InString)
-{
+    std::string ToUpper(const std::string& InString)
+    {
+        std::string ustr;
 
-  std::string ustr;
-  
-  for (int i = 0; i < InString.size(); i++)
-  {
-    ustr += toupper(InString[i]);   
-  }
-  return ustr;
-}
+        for (int i = 0; i < InString.size(); i++)
+        {
+            ustr += toupper(InString[i]);
+        }
+        return ustr;
+    }
+
 
 //---------------------------------------------------------------------------
 //
@@ -888,13 +888,13 @@ std::string ToUpper(const std::string& InString)
 //
 //---------------------------------------------------------------------------
 
-void RemoveLeading(std::string& InString, char lchar)
-{
-	if (InString[0] == lchar)
-	{
-	  InString = InString.substr(1);
-	}
-}
+    void RemoveLeading(std::string& InString, char lchar)
+    {
+        if (InString[0] == lchar)
+        {
+            InString = InString.substr(1);
+        }
+    }
 
 
 //---------------------------------------------------------------------------
@@ -906,70 +906,66 @@ void RemoveLeading(std::string& InString, char lchar)
 //
 //---------------------------------------------------------------------------
 
-std::string Pathname(const std::string& FilenameStr, char PathDiff)
-{
-	std::string PathStr;
+    std::string Pathname(const std::string& FilenameStr, char PathDiff)
+    {
+        std::string PathStr;
 
-	int SlashIndex = FilenameStr.find_last_of('/');
-	if (SlashIndex != std::string::npos)
-	{
-		PathStr = FilenameStr.substr(0, SlashIndex);
-	}
-	return PathStr;
-}
+        int SlashIndex = FilenameStr.find_last_of('/');
+
+        if (SlashIndex != std::string::npos)
+        {
+            PathStr = FilenameStr.substr(0, SlashIndex);
+        }
+        return PathStr;
+    }
+
 
 /*
-	//---------------------------------------------------------------------------
-	//
-	// Namespace: NStringTool
-	// Methode:		Strcmpx
-	//
-	// Vergleich zweier Strings ohne Beruecksichtigung der Gross/Klein-
-	// schreibung
-	//
-	// Return: wie strcmp (0: Strings sind gleich)
-	//
-	//---------------------------------------------------------------------------
+ *  //---------------------------------------------------------------------------
+ *  //
+ *  // Namespace: NStringTool
+ *  // Methode:		Strcmpx
+ *  //
+ *  // Vergleich zweier Strings ohne Beruecksichtigung der Gross/Klein-
+ *  // schreibung
+ *  //
+ *  // Return: wie strcmp (0: Strings sind gleich)
+ *  //
+ *  //---------------------------------------------------------------------------
+ *
+ *  int Strcmpx(const char* s1, const char* s2)
+ *  {
+ *      if ((s1 == NULL) || (s2 == NULL))
+ *      {
+ *          return false;
+ *      }
+ *
+ *      char* bstr1 = new char[strlen(s1) + 1];
+ *      char* bstr2 = new char[strlen(s2) + 1];
+ *
+ *      strcpy(bstr1, s1);
+ *      strcpy(bstr2, s2);
+ *
+ *      for (char* c1 = bstr1; *c1 != 0; c1++)
+ *      {
+ * c1 = toupper(*c1);
+ *      }
+ *      for (char* c1 = bstr2; *c1 != 0; c1++)
+ *      {
+ * c1 = toupper(*c1);
+ *      }
+ *
+ *      int s = strcmp(bstr1, bstr2);
+ *
+ *      delete bstr2;
+ *      delete bstr1;
+ *
+ *      return s;
+ *  }
+ */
 
-	int Strcmpx(const char* s1, const char* s2)
-	{
-		if ((s1 == NULL) || (s2 == NULL))
-		{
-			return false;
-		}
 
-		char* bstr1 = new char[strlen(s1) + 1];
-		char* bstr2 = new char[strlen(s2) + 1];
-
-		strcpy(bstr1, s1);
-		strcpy(bstr2, s2);
-
-		for (char* c1 = bstr1; *c1 != 0; c1++)
-		{
-			*c1 = toupper(*c1);
-		}
-		for (char* c1 = bstr2; *c1 != 0; c1++)
-		{
-			*c1 = toupper(*c1);
-		}
-
-		int s = strcmp(bstr1, bstr2);
-
-		delete bstr2;
-		delete bstr1;
-
-		return s;
-	}
-	*/
-
-
-  //
-	// End of namespace NStringTool
-	//
+    //
+    // End of namespace NStringTool
+    //
 }
-
-
-
-
-
-

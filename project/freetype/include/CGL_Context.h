@@ -18,19 +18,18 @@
 
 class CGL_Context
 {
-	public:
-	
-		CGL_Context();
-		virtual ~CGL_Context() { };
+    public:
 
-		virtual bool Init(int w, int h);
-		virtual void Draw2D() { };
-	
-		int              mWidth;
-		int              mHeight;
-		float            mAspect;
-		
+        CGL_Context();
+        virtual ~CGL_Context() { }
+
+        virtual bool Init(int w, int h);
+
+        virtual void Draw2D() { }
+
+        int mWidth;
+        int mHeight;
+        float mAspect;
 };
 
 #endif
-

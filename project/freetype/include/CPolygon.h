@@ -22,95 +22,107 @@
 
 struct SPolyPoint : public CVector2<float>
 {
-  SPolyPoint()
-  {
-    t = 0.0f;
-  }
+    SPolyPoint()
+    {
+        t = 0.0f;
+    }
 
-  float t; // Koordinate des Punktes innerhalb des Polygons (0..1)
+
+    float t; // Koordinate des Punktes innerhalb des Polygons (0..1)
 };
 
 class CPolygon
 {
-  public:
+    public:
 
-    CPolygon()
-    {
-      mTotalLength = 0.0;
-    }
-
-  	void CalcLength();
-
-  	int Size() const
-  	{
-  	  return mPoints.size();
-  	}
-
-  	float ix(int i) const
-  	{
-  	  return mPoints[i].x;
-  	}
-
-  	float iy(int i) const
-  	{
-  	  return mPoints[i].y;
-  	}
-
-   	float it(int i) const
-  	{
-  	  return mPoints[i].t;
-  	}
-
-  	float CenterX() const
-  	{
-  	  return mCenter.x;
-  	}
-
-  	float CenterY() const
-  	{
-  	  return mCenter.y;
-  	}
-
-		void AddPoint(float x, float y)
-  	{
-			SPolyPoint pt;
-
-			pt.Set(x, y);
-  	  mPoints.push_back(pt);
-  	}
+        CPolygon()
+        {
+            mTotalLength = 0.0;
+        }
 
 
-  	void AddPoint(SPolyPoint& pt)
-  	{
-  	  mPoints.push_back(pt);
-  	}
-  	
-  	
-  	float BoxWidth() const
-  	{
-  	  return mBBox.Width();
-  	}
-  	float BoxHeight() const
-  	{
-  	  return mBBox.Height();
-  	}
+        void CalcLength();
 
-  	void Clear()
-  	{
-  	  mPoints.clear();
-  	  mTotalLength = 0.0;
-  	}
+        int Size() const
+        {
+            return mPoints.size();
+        }
 
-  	std::vector<SPolyPoint> mPoints;
-  	CVector2<float>         mCenter; // Zentrum aller Punkte
-  	CRectT<float>           mBBox;   // Bounding Box
 
-  	float mTotalLength;
+        float ix(int i) const
+        {
+            return mPoints[i].x;
+        }
 
-	protected:
 
-		void CalcCenter();
-		void CalcBBox();
+        float iy(int i) const
+        {
+            return mPoints[i].y;
+        }
+
+
+        float it(int i) const
+        {
+            return mPoints[i].t;
+        }
+
+
+        float CenterX() const
+        {
+            return mCenter.x;
+        }
+
+
+        float CenterY() const
+        {
+            return mCenter.y;
+        }
+
+
+        void AddPoint(float x, float y)
+        {
+            SPolyPoint pt;
+
+            pt.Set(x, y);
+            mPoints.push_back(pt);
+        }
+
+
+        void AddPoint(SPolyPoint& pt)
+        {
+            mPoints.push_back(pt);
+        }
+
+
+        float BoxWidth() const
+        {
+            return mBBox.Width();
+        }
+
+
+        float BoxHeight() const
+        {
+            return mBBox.Height();
+        }
+
+
+        void Clear()
+        {
+            mPoints.clear();
+            mTotalLength = 0.0;
+        }
+
+
+        std::vector<SPolyPoint> mPoints;
+        CVector2<float> mCenter;        // Zentrum aller Punkte
+        CRectT<float> mBBox;            // Bounding Box
+
+        float mTotalLength;
+
+    protected:
+
+        void CalcCenter();
+        void CalcBBox();
 };
 
 #endif

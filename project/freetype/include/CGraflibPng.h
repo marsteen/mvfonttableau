@@ -31,28 +31,26 @@
 
 class CGraflibPng : public CGraflib
 {
-	public:
+    public:
 
 
-		bool Read(FILE* fp, SFileReadInfo* fri);
-		bool ReadMem(const void* buf, size_t size);
-		
-		bool Read(const char* Filename, SFileReadInfo* fri = NULL);
-		int  Write(const char* Filename);
+        bool Read(FILE* fp, SFileReadInfo* fri);
+        bool ReadMem(const void* buf, size_t size);
 
-		bool OpenReadLine(const char* Filename) { return false; }
-		void ReadLine(void* LineBuffer) { }
-		void CloseReadLine() { }
+        bool Read(const char* Filename, SFileReadInfo* fri = NULL);
+        int Write(const char* Filename);
 
-		bool OpenWriteLine(const char* Filename) { return false; }
-		void WriteLine(const void* LineBuffer) { }
-		void CloseWriteLine() { }
-		
-	protected:
-		
-		void TestPalette(const void* vpinfo);
+        bool OpenReadLine(const char* Filename) { return false; }
+        void ReadLine(void* LineBuffer) { }
+        void CloseReadLine() { }
 
+        bool OpenWriteLine(const char* Filename) { return false; }
+        void WriteLine(const void* LineBuffer) { }
+        void CloseWriteLine() { }
 
+    protected:
+
+        void TestPalette(const void* vpinfo);
 };
 
 #endif

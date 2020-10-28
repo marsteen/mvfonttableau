@@ -19,15 +19,15 @@
 
 class CHexConv
 {
-	public:
+    public:
 
-		 static int   NibbleToInt(char a);
-		 static int   ByteToInt(unsigned char a, unsigned char b);
-		 static float ByteToFloat(unsigned char a, unsigned char b);
-		 static int   StringToInt(const char* s);
-		 static std::string  ToHex(int i);
-		 static std::string  ToHex(const std::string s);
-		 static std::string  ToHexSmall(int i);
+        static int NibbleToInt(char a);
+        static int ByteToInt(unsigned char a, unsigned char b);
+        static float ByteToFloat(unsigned char a, unsigned char b);
+        static int StringToInt(const char* s);
+        static std::string ToHex(int i);
+        static std::string ToHex(const std::string s);
+        static std::string ToHexSmall(int i);
 };
 
 #include <CHexConv.hpp>

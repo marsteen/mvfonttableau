@@ -19,15 +19,16 @@
 
 struct SFileReadInfo
 {
-	SFileReadInfo()
-	{
-		mFio = NULL;
-		mData = NULL;
-	}
+    SFileReadInfo()
+    {
+        mFio = NULL;
+        mData = NULL;
+    }
 
-	CFileIO*     mFio;
-	unsigned int mFilePosition;
-	unsigned int mFileSize;
-	void*        mData;
+
+    CFileIO*		mFio;
+    unsigned int	mFilePosition;
+    unsigned int	mFileSize;
+    void*			mData;
 };
 #endif

@@ -27,15 +27,14 @@
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 bool CPixel32T<Tpixel>::operator==(const CPixel32T<Tpixel>& p2) const
 {
-	return ((rgba[0] == p2.rgba[0]) &&
-					(rgba[1] == p2.rgba[1]) &&
-					(rgba[2] == p2.rgba[2]) &&
-					(rgba[3] == p2.rgba[3]));
+    return (rgba[0] == p2.rgba[0]) &&
+           (rgba[1] == p2.rgba[1]) &&
+           (rgba[2] == p2.rgba[2]) &&
+           (rgba[3] == p2.rgba[3]);
 }
-
 
 
 //---------------------------------------------------------------------------
@@ -49,29 +48,30 @@ bool CPixel32T<Tpixel>::operator==(const CPixel32T<Tpixel>& p2) const
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 void CPixel32T<Tpixel>::MixBlack(unsigned char g1)
 {
-	if (g1 != 255)
-	{
-		if (g1 == 0)
-		{
-			rgba[0] = rgba[1] = rgba[2] = rgba[3] = 0;
-		}
-		else
-		{
-			rgba[0] = ((rgba[0] * g1) / 255);
-			rgba[1] = ((rgba[1] * g1) / 255);
-			rgba[2] = ((rgba[2] * g1) / 255);
-			rgba[3] = ((rgba[3] * g1) / 255);
-		}
-	}
+    if (g1 != 255)
+    {
+        if (g1 == 0)
+        {
+            rgba[0] = rgba[1] = rgba[2] = rgba[3] = 0;
+        }
+        else
+        {
+            rgba[0] = ((rgba[0] * g1) / 255);
+            rgba[1] = ((rgba[1] * g1) / 255);
+            rgba[2] = ((rgba[2] * g1) / 255);
+            rgba[3] = ((rgba[3] * g1) / 255);
+        }
+    }
 }
 
-template <typename T>
+
+template<typename T>
 T Saturate(T a, T b)
 {
-	return ((a + b) > 255) ? 255 : a + b;
+    return ((a + b) > 255) ? 255 : a + b;
 }
 
 
@@ -83,23 +83,22 @@ T Saturate(T a, T b)
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 void CPixel32T<Tpixel>::MixPixel(CPixel32T<Tpixel>*  p2)
 {
+    Tpixel Alpha1 = 255 - p2->rgba[3];
+    Tpixel Alpha2 = p2->rgba[3];
+    Tpixel Alpha3 = Saturate(rgba[3], p2->rgba[3]);
 
-	Tpixel Alpha1 = 255 - p2->rgba[3];
-	Tpixel Alpha2 = p2->rgba[3];
-	Tpixel Alpha3 = Saturate(rgba[3], p2->rgba[3]);
-
-	for (int i = 0; i < 3; i++)
-	{
-		rgba[i] = ((rgba[i] * Alpha1) / 255) + ((p2->rgba[i] * Alpha2) / 255);
-	}
-	//rgba[1] = ((rgba[1] * Alpha1) / 255) + ((p2->rgba[1] * Alpha2) / 255);
-	//rgba[2] = ((rgba[2] * Alpha1) / 255) + ((p2->rgba[2] * Alpha2) / 255);
+    for (int i = 0; i < 3; i++)
+    {
+        rgba[i] = ((rgba[i] * Alpha1) / 255) + ((p2->rgba[i] * Alpha2) / 255);
+    }
+    //rgba[1] = ((rgba[1] * Alpha1) / 255) + ((p2->rgba[1] * Alpha2) / 255);
+    //rgba[2] = ((rgba[2] * Alpha1) / 255) + ((p2->rgba[2] * Alpha2) / 255);
 
 
-	rgba[3] =  Alpha3;
+    rgba[3] = Alpha3;
 }
 
 
@@ -111,23 +110,22 @@ void CPixel32T<Tpixel>::MixPixel(CPixel32T<Tpixel>*  p2)
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 void CPixel32T<Tpixel>::MultPixel(const CPixel32T<Tpixel>*  p2)
 {
-	if (p2->rgba[3] > 0)
-	{
+    if (p2->rgba[3] > 0)
+    {
+        float Alpha = float(p2->rgba[3]) / 255;
 
-		float Alpha = float(p2->rgba[3]) / 255;
+        for (int i = 0; i < 3; i++)
+        {
+            float f = float(p2->rgba[i]) / 255;
+            //rgba[i] *= f;
 
-		for (int i = 0; i < 3; i++)
-		{
-			float f = float(p2->rgba[i]) / 255;
-			//rgba[i] *= f;
-
-			rgba[i] = (rgba[i] * f * Alpha) +
-			          (rgba[i] * (1.0f - Alpha));
-		}
-	}
+            rgba[i] = (rgba[i] * f * Alpha) +
+                (rgba[i] * (1.0f - Alpha));
+        }
+    }
 }
 
 
@@ -140,14 +138,15 @@ void CPixel32T<Tpixel>::MultPixel(const CPixel32T<Tpixel>*  p2)
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 bool CPixel32T<Tpixel>::operator!=(const CPixel32T<Tpixel>& p2) const
 {
-	return ((rgba[0] != p2.rgba[0]) ||
-					(rgba[1] != p2.rgba[1]) ||
-					(rgba[2] != p2.rgba[2]) ||
-					(rgba[3] != p2.rgba[3]));
+    return (rgba[0] != p2.rgba[0]) ||
+           (rgba[1] != p2.rgba[1]) ||
+           (rgba[2] != p2.rgba[2]) ||
+           (rgba[3] != p2.rgba[3]);
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -158,14 +157,15 @@ bool CPixel32T<Tpixel>::operator!=(const CPixel32T<Tpixel>& p2) const
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 void CPixel32T<Tpixel>::SwapRedBlue()
 {
-	Tpixel swap = rgba[0];
+    Tpixel swap = rgba[0];
 
-	rgba[0] = rgba[2];
-	rgba[2] = swap;
+    rgba[0] = rgba[2];
+    rgba[2] = swap;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -176,15 +176,14 @@ void CPixel32T<Tpixel>::SwapRedBlue()
 //
 //---------------------------------------------------------------------------
 
-template <typename Tpixel>
+template<typename Tpixel>
 void CPixel32T<Tpixel>::Set(Tpixel r, Tpixel g, Tpixel b, Tpixel a)
 {
-	rgba[0] = r;
-	rgba[1] = g;
-	rgba[2] = b;
-	rgba[3] = a;
+    rgba[0] = r;
+    rgba[1] = g;
+    rgba[2] = b;
+    rgba[3] = a;
 }
-
 
 
 //---------------------------------------------------------------------------
@@ -196,16 +195,18 @@ void CPixel32T<Tpixel>::Set(Tpixel r, Tpixel g, Tpixel b, Tpixel a)
 //---------------------------------------------------------------------------
 
 
-template <typename Tpixel>
+template<typename Tpixel>
 void CPixel32T<Tpixel>::PrepareAlpha(Tpixel* Alpha1)
 {
-	Tpixel Alpha2 = rgba[3];
-	*Alpha1 = 255 - rgba[3];
+    Tpixel Alpha2 = rgba[3];
+
+    *Alpha1 = 255 - rgba[3];
 
 
-	rgba[0]  = (rgba[0] * Alpha2) / 255;
-	rgba[1]  = (rgba[1] * Alpha2) / 255;
-	rgba[2]  = (rgba[2] * Alpha2) / 255;
+    rgba[0] = (rgba[0] * Alpha2) / 255;
+    rgba[1] = (rgba[1] * Alpha2) / 255;
+    rgba[2] = (rgba[2] * Alpha2) / 255;
 }
+
 
 #endif

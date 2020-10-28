@@ -38,14 +38,15 @@
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator=(const CVector2<T>& v2)
 {
-	x = v2.x;
-	y = v2.y;
+    x = v2.x;
+    y = v2.y;
 
-	return *this;
+    return *this;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -58,16 +59,17 @@ CVector2<T> CVector2<T>::operator=(const CVector2<T>& v2)
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator-(const CVector2<T> v2) const
 {
-	CVector2<T> v1;
+    CVector2<T> v1;
 
-	v1.x = x - v2.x;
-	v1.y = y - v2.y;
+    v1.x = x - v2.x;
+    v1.y = y - v2.y;
 
-	return v1;
+    return v1;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -80,16 +82,17 @@ CVector2<T> CVector2<T>::operator-(const CVector2<T> v2) const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator+(const CVector2<T> v2) const
 {
-	CVector2<T> v1;
+    CVector2<T> v1;
 
-	v1.x = x + v2.x;
-	v1.y = y + v2.y;
+    v1.x = x + v2.x;
+    v1.y = y + v2.y;
 
-	return v1;
+    return v1;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -102,16 +105,17 @@ CVector2<T> CVector2<T>::operator+(const CVector2<T> v2) const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator*(const CVector2<T> v2) const
 {
-	CVector2<T> v1;
+    CVector2<T> v1;
 
-	//v1.x = (y * v2.y) - (y * v2.y);
-	//v1.y = (yz * v2.x) - (x * v2.y);
+    //v1.x = (y * v2.y) - (y * v2.y);
+    //v1.y = (yz * v2.x) - (x * v2.y);
 
-	return v1;
+    return v1;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -124,16 +128,17 @@ CVector2<T> CVector2<T>::operator*(const CVector2<T> v2) const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator*(T c) const
 {
-	CVector2<T> v1;
+    CVector2<T> v1;
 
-	v1.x = x * c;
-	v1.y = y * c;
+    v1.x = x * c;
+    v1.y = y * c;
 
-	return v1;
+    return v1;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -146,16 +151,17 @@ CVector2<T> CVector2<T>::operator*(T c) const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator/(T c) const
 {
-	CVector2<T> v1;
+    CVector2<T> v1;
 
-	v1.x = x / c;
-	v1.y = y / c;
+    v1.x = x / c;
+    v1.y = y / c;
 
-	return v1;
+    return v1;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -168,14 +174,15 @@ CVector2<T> CVector2<T>::operator/(T c) const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator+=(CVector2<T> v2)
 {
-	x += v2.x;
-	y += v2.y;
+    x += v2.x;
+    y += v2.y;
 
-	return *this;
+    return *this;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -188,14 +195,15 @@ CVector2<T> CVector2<T>::operator+=(CVector2<T> v2)
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator-=(CVector2<T> v2)
 {
-	x -= v2.x;
-	y -= v2.y;
+    x -= v2.x;
+    y -= v2.y;
 
-	return *this;
+    return *this;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -208,13 +216,13 @@ CVector2<T> CVector2<T>::operator-=(CVector2<T> v2)
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 CVector2<T> CVector2<T>::operator/=(T c)
 {
-	x /= c;
-	y /= c;
+    x /= c;
+    y /= c;
 
-	return *this;
+    return *this;
 }
 
 
@@ -229,11 +237,12 @@ CVector2<T> CVector2<T>::operator/=(T c)
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 T CVector2<T>::Betrag() const
 {
-	return sqrt((x * x) + (y * y ));
+    return sqrt((x * x) + (y * y));
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -246,17 +255,18 @@ T CVector2<T>::Betrag() const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 void CVector2<T>::Normalize()
 {
-	T Lenght = Betrag();
+    T Lenght = Betrag();
 
-  if (Lenght > 0)
-  {
-		x /= Lenght;
-		y /= Lenght;
-	}
+    if (Lenght > 0)
+    {
+        x /= Lenght;
+        y /= Lenght;
+    }
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -269,12 +279,13 @@ void CVector2<T>::Normalize()
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 void CVector2<T>::SubtractVector(CVector2<T>* v1, CVector2<T>* v2)
 {
-	x = v1->x - v2->x;
-	y = v1->y - v2->y;
+    x = v1->x - v2->x;
+    y = v1->y - v2->y;
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -287,11 +298,12 @@ void CVector2<T>::SubtractVector(CVector2<T>* v1, CVector2<T>* v2)
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 T CVector2<T>::SkalarProdukt(const CVector2<T>* v1) const
 {
-	return (x * v1->x) + (y * v1->y);
+    return (x * v1->x) + (y * v1->y);
 }
+
 
 //---------------------------------------------------------------------------
 //
@@ -304,13 +316,12 @@ T CVector2<T>::SkalarProdukt(const CVector2<T>* v1) const
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 void CVector2<T>::Reverse()
 {
-	x = -x;
-	y = -y;
+    x = -x;
+    y = -y;
 }
-
 
 
 //---------------------------------------------------------------------------
@@ -324,11 +335,11 @@ void CVector2<T>::Reverse()
 //
 //---------------------------------------------------------------------------
 
-template <class T>
+template<class T>
 void CVector2<T>::operator*=(T f)
 {
-	x *= f;
-	y *= f;
+    x *= f;
+    y *= f;
 }
 
 
@@ -346,16 +357,16 @@ void CVector2<T>::operator*=(T f)
 // Drehen des Vectors in der XY Ebene um den Punkt v2 und den
 // Winkel Alpha
 
-template <class T>
+template<class T>
 void CVector2<T>::RotationXY(const CVector2<T>* v2, T sinAlpha, T cosAlpha)
 {
-	T xerg, yerg;
+    T xerg, yerg;
 
-	xerg = (cosAlpha * (x - v2->x)) - (sinAlpha * (y - v2->y));
-	yerg = (sinAlpha * (x - v2->x)) + (cosAlpha * (y - v2->y));
+    xerg = (cosAlpha * (x - v2->x)) - (sinAlpha * (y - v2->y));
+    yerg = (sinAlpha * (x - v2->x)) + (cosAlpha * (y - v2->y));
 
-	x = xerg + v2->x;
-	y = yerg + v2->y;
+    x = xerg + v2->x;
+    y = yerg + v2->y;
 }
 
 
@@ -372,16 +383,16 @@ void CVector2<T>::RotationXY(const CVector2<T>* v2, T sinAlpha, T cosAlpha)
 
 // Drehen des Vectors in der XY Ebene und den Winkel Alpha
 
-template <class T>
+template<class T>
 void CVector2<T>::RotationXY(T sinAlpha, T cosAlpha)
 {
-	T xerg, yerg;
+    T xerg, yerg;
 
-	xerg = (cosAlpha * x) - (sinAlpha * y);
-	yerg = (sinAlpha * x) + (cosAlpha * y);
+    xerg = (cosAlpha * x) - (sinAlpha * y);
+    yerg = (sinAlpha * x) + (cosAlpha * y);
 
-	x = xerg;
-	y = yerg;
+    x = xerg;
+    y = yerg;
 }
 
 

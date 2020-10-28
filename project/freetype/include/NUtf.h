@@ -18,7 +18,7 @@
 
 namespace NUtf
 {
-	unsigned int Utf8_to_Utf32(const unsigned char* Utf8, int* Size);
+    unsigned int Utf8_to_Utf32(const unsigned char* Utf8, int* Size);
 }
 
 #endif

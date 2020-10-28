@@ -16,16 +16,17 @@
 #ifndef TEMPLATE_MACROS_HPP
 #define TEMPLATE_MACROS_HPP
 
-template <typename T>
+template<typename T>
 T Tmax(T a, T b)
-{	
-	return (a > b) ? a : b;
+{
+    return (a > b) ? a : b;
 }
 
-template <typename T>
+
+template<typename T>
 T Tmin(T a, T b)
-{	
-	return (a < b) ? a : b;
+{
+    return (a < b) ? a : b;
 }
 
 

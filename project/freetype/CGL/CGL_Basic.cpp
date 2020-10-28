@@ -46,35 +46,35 @@ using namespace NGlobalLog;
 
 void CGL_Basic::DrawQuad(const CGL_Context* glcon, float x1, float y1, float x2, float y2)
 {
-	SVertArray ar;
-	CVector3<float> v;
-	
-	ar.MakeVerts(4);
-	
-	v.Set(x1, y1, 0);	
-	ar.AddVert(v);
-	
-	v.Set(x2, y1, 0);
-	ar.AddVert(v);
-	
-	v.Set(x2, y2, 0);
-	ar.AddVert(v);
+    SVertArray ar;
+    CVector3<float> v;
 
-	v.Set(x1, y2, 0);
-	ar.AddVert(v);
-	
-	glFrontFace(GL_CCW);
-	glDisable(GL_CULL_FACE);
-	
-	glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-	glEnableVertexAttribArray(glcon->VertAttrib());
+    ar.MakeVerts(4);
+
+    v.Set(x1, y1, 0);
+    ar.AddVert(v);
+
+    v.Set(x2, y1, 0);
+    ar.AddVert(v);
+
+    v.Set(x2, y2, 0);
+    ar.AddVert(v);
+
+    v.Set(x1, y2, 0);
+    ar.AddVert(v);
+
+    glFrontFace(GL_CCW);
+    glDisable(GL_CULL_FACE);
+
+    glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glEnableVertexAttribArray(glcon->VertAttrib());
 
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
- 	
- 	//checkGlError("DrawQuad");
+    glDisableVertexAttribArray(glcon->VertAttrib());
+
+    //checkGlError("DrawQuad");
 }
 
 
@@ -92,54 +92,55 @@ void CGL_Basic::DrawQuad(const CGL_Context* glcon, float x1, float y1, float x2,
 
 void CGL_Basic::DrawQuad(const CGL_Context* glcon, float x1, float y1, float x2, float y2, const float* Colors)
 {
-	SVertArray ar;
-	CVector3<float> v;
-	
-	ar.MakeVerts(4);
-	
-	/*
-	v.Set(x1, y1, 0);	
-	ar.AddVert(v);
+    SVertArray ar;
+    CVector3<float> v;
 
-	v.Set(x1, y2, 0);
-	ar.AddVert(v);	
+    ar.MakeVerts(4);
 
-	v.Set(x2, y2, 0);
-	ar.AddVert(v);
-	
-	v.Set(x2, y1, 0);
-	ar.AddVert(v);
-	*/
-	
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CCW);	
-	
-	v.Set(x1, y1, 0);	
-	ar.AddVert(v);
-	
-	v.Set(x2, y1, 0);
-	ar.AddVert(v);
-	
-	v.Set(x2, y2, 0);
-	ar.AddVert(v);
+    /*
+     * v.Set(x1, y1, 0);
+     * ar.AddVert(v);
+     *
+     * v.Set(x1, y2, 0);
+     * ar.AddVert(v);
+     *
+     * v.Set(x2, y2, 0);
+     * ar.AddVert(v);
+     *
+     * v.Set(x2, y1, 0);
+     * ar.AddVert(v);
+     */
 
-	v.Set(x1, y2, 0);
-	ar.AddVert(v);
-	
-	glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-	glVertexAttribPointer(glcon->ColorAttrib(), 3, GL_FLOAT, GL_FALSE, 0, Colors);
-	
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glEnableVertexAttribArray(glcon->ColorAttrib());
+    glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CCW);
+
+    v.Set(x1, y1, 0);
+    ar.AddVert(v);
+
+    v.Set(x2, y1, 0);
+    ar.AddVert(v);
+
+    v.Set(x2, y2, 0);
+    ar.AddVert(v);
+
+    v.Set(x1, y2, 0);
+    ar.AddVert(v);
+
+    glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glVertexAttribPointer(glcon->ColorAttrib(), 3, GL_FLOAT, GL_FALSE, 0, Colors);
+
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glEnableVertexAttribArray(glcon->ColorAttrib());
 
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
-	glDisableVertexAttribArray(glcon->ColorAttrib());
- 	
- 	//checkGlError("DrawQuad");
+    glDisableVertexAttribArray(glcon->VertAttrib());
+    glDisableVertexAttribArray(glcon->ColorAttrib());
+
+    //checkGlError("DrawQuad");
 }
+
 
 // ---------------------------------------------------------------------------
 //
@@ -153,8 +154,9 @@ void CGL_Basic::DrawQuad(const CGL_Context* glcon, float x1, float y1, float x2,
 
 void CGL_Basic::DrawQuad(const CGL_Context* glcon, const CRectT<float>& vr, const float* Colors)
 {
-	DrawQuad(glcon, vr.left, vr.top, vr.right, vr.bottom, Colors);	
+    DrawQuad(glcon, vr.left, vr.top, vr.right, vr.bottom, Colors);
 }
+
 
 // ---------------------------------------------------------------------------
 //
@@ -166,7 +168,7 @@ void CGL_Basic::DrawQuad(const CGL_Context* glcon, const CRectT<float>& vr, cons
 
 void CGL_Basic::DrawQuad(const CGL_Context* glcon, const CRectT<float>& vr)
 {
-	DrawQuad(glcon, vr.left, vr.top, vr.right, vr.bottom);	
+    DrawQuad(glcon, vr.left, vr.top, vr.right, vr.bottom);
 }
 
 
@@ -178,24 +180,21 @@ void CGL_Basic::DrawQuad(const CGL_Context* glcon, const CRectT<float>& vr)
 // ---------------------------------------------------------------------------
 
 
-static void AddPointToArray(int i, const CPolygon* Polygon,  float sx, float sy, const float& TexOffset, SVertArray2D& ar)
+static void AddPointToArray(int i, const CPolygon* Polygon, float sx, float sy, const float& TexOffset, SVertArray2D& ar)
 {
-	CVector2<float> v;
-	CVector2<float> t;
+    CVector2<float> v;
+    CVector2<float> t;
 
-	float px = Polygon->ix(i) * sx;
-	float py = Polygon->iy(i) * sy;
-	float tx = Polygon->it(i);
+    float px = Polygon->ix(i) * sx;
+    float py = Polygon->iy(i) * sy;
+    float tx = Polygon->it(i);
 
-	
-	v.Set(px, py);
-	t.Set(tx, TexOffset);	
-	ar.AddVert(v);
-	ar.AddText(t);
+
+    v.Set(px, py);
+    t.Set(tx, TexOffset);
+    ar.AddVert(v);
+    ar.AddText(t);
 }
-
-
-
 
 
 // ---------------------------------------------------------------------------
@@ -207,71 +206,71 @@ static void AddPointToArray(int i, const CPolygon* Polygon,  float sx, float sy,
 
 void CGL_Basic::DrawPolygon(const CGL_Context* glcon, const CPolygon* Polygon, float sx, float sy, float& TexOffset)
 {
+    if (Polygon->Size() > 0)
+    {
+        static bool sFirst = true;
+        SVertArray2D ar;
+        CVector2<float> v;
+        CVector2<float> t;
 
-  if (Polygon->Size() > 0)
-  {
-		static bool sFirst = true;
-		SVertArray2D ar;
-		CVector2<float> v;
-		CVector2<float> t;
-	
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-		ar.MakeVerts(Polygon->Size());
-		ar.MakeTexts(Polygon->Size());
-	
-		for (int i = 0; i < Polygon->Size(); i++)
-		{
-			AddPointToArray(i, Polygon, sx, sy, TexOffset, ar);
-	
-		/*
-			float px = Polygon->ix(i) * sx;
-			float py = Polygon->iy(i) * sy;
-			float tx = Polygon->it(i);
-		
-			if (sFirst)
-			{
-				//gdstr << "px=" << px << " py=" << py;
-				//gdlog();
-			}
-	
-			v.Set(px, py, 0);
-			t.Set(tx, TexOffset);	
-			ar.AddVert(v);
-			ar.AddText(t);
-	*/		
-		}
-	
-		//AddPointToArray(0, Polygon, sx, sy, TexOffset, ar); // Polygon schliessen
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	
-	
-		TexOffset += 0.002;
-		if (TexOffset >= 100000.0f)
-		{
-			TexOffset -= 100000.0f;
-		}
-	
-		
-		glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-		glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
-	
-		glEnableVertexAttribArray(glcon->VertAttrib());
-		glEnableVertexAttribArray(glcon->TextAttrib());
+        ar.MakeVerts(Polygon->Size());
+        ar.MakeTexts(Polygon->Size());
+
+        for (int i = 0; i < Polygon->Size(); i++)
+        {
+            AddPointToArray(i, Polygon, sx, sy, TexOffset, ar);
+
+            /*
+             *  float px = Polygon->ix(i) * sx;
+             *  float py = Polygon->iy(i) * sy;
+             *  float tx = Polygon->it(i);
+             *
+             *  if (sFirst)
+             *  {
+             *      //gdstr << "px=" << px << " py=" << py;
+             *      //gdlog();
+             *  }
+             *
+             *  v.Set(px, py, 0);
+             *  t.Set(tx, TexOffset);
+             *  ar.AddVert(v);
+             *  ar.AddText(t);
+             */
+        }
+
+        //AddPointToArray(0, Polygon, sx, sy, TexOffset, ar); // Polygon schliessen
 
 
-		glDrawArrays(GL_LINE_STRIP, 0, ar.mCount);
 
-		glDisableVertexAttribArray(glcon->VertAttrib());
-		glDisableVertexAttribArray(glcon->TextAttrib());
-	
-		glDisable(GL_BLEND);
+        TexOffset += 0.002;
+        if (TexOffset >= 100000.0f)
+        {
+            TexOffset -= 100000.0f;
+        }
 
-		checkGlError("DrawPolygon");
-		sFirst = false;
-	}
+
+        glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+        glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
+
+        glEnableVertexAttribArray(glcon->VertAttrib());
+        glEnableVertexAttribArray(glcon->TextAttrib());
+
+
+        glDrawArrays(GL_LINE_STRIP, 0, ar.mCount);
+
+        glDisableVertexAttribArray(glcon->VertAttrib());
+        glDisableVertexAttribArray(glcon->TextAttrib());
+
+        glDisable(GL_BLEND);
+
+        checkGlError("DrawPolygon");
+        sFirst = false;
+    }
 }
+
 
 // ---------------------------------------------------------------------------
 //
@@ -280,27 +279,27 @@ void CGL_Basic::DrawPolygon(const CGL_Context* glcon, const CPolygon* Polygon, f
 //
 // ---------------------------------------------------------------------------
 
-void CGL_Basic::DrawLine(const CGL_Context* glcon, float x1, float y1, float x2, float y2) 
+void CGL_Basic::DrawLine(const CGL_Context* glcon, float x1, float y1, float x2, float y2)
 {
-	SVertArray ar;
-	CVector3<float> v;
-	
-	ar.MakeVerts(2);
-	
-	v.Set(x1, y1, 0);	
-	ar.AddVert(v);
-	v.Set(x2, y2, 0);
-	ar.AddVert(v);	
-	
-	checkGlError("VOR  DrawLine");
-		
-	glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());	
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glDrawArrays(GL_LINES, 0, 2);
+    SVertArray ar;
+    CVector3<float> v;
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());	
+    ar.MakeVerts(2);
 
- 	checkGlError("NACH DrawLine");
+    v.Set(x1, y1, 0);
+    ar.AddVert(v);
+    v.Set(x2, y2, 0);
+    ar.AddVert(v);
+
+    checkGlError("VOR  DrawLine");
+
+    glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glDrawArrays(GL_LINES, 0, 2);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
+
+    checkGlError("NACH DrawLine");
 }
 
 
@@ -311,23 +310,23 @@ void CGL_Basic::DrawLine(const CGL_Context* glcon, float x1, float y1, float x2,
 //
 // ---------------------------------------------------------------------------
 
-void CGL_Basic::DrawLines(const CGL_Context* glcon, const std::vector<	CVector2<float> >& LineVec) 
+void CGL_Basic::DrawLines(const CGL_Context* glcon, const std::vector<CVector2<float> >& LineVec)
 {
-	SVertArray2D ar;
-	CVector2<float> v;
-	
-	ar.MakeVerts(LineVec.size());
-	for (int i = 0; i < LineVec.size(); i++)
-	{	
-	  ar.AddVert(LineVec[i]);
-	}
-		
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());	
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glDrawArrays(GL_LINES, 0, LineVec.size());
- 	glDisableVertexAttribArray(glcon->VertAttrib());	
+    SVertArray2D ar;
+    CVector2<float> v;
 
- 	checkGlError("DrawLine"); 	
+    ar.MakeVerts(LineVec.size());
+    for (int i = 0; i < LineVec.size(); i++)
+    {
+        ar.AddVert(LineVec[i]);
+    }
+
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glDrawArrays(GL_LINES, 0, LineVec.size());
+    glDisableVertexAttribArray(glcon->VertAttrib());
+
+    checkGlError("DrawLine");
 }
 
 
@@ -341,32 +340,31 @@ void CGL_Basic::DrawLines(const CGL_Context* glcon, const std::vector<	CVector2<
 
 void CGL_Basic::DrawFrame(const CGL_Context* glcon, const CRectT<float>& rc)
 {
-	SVertArray ar;
-	CVector3<float> v;
-	
-	ar.MakeVerts(4);
-	
-	v.Set(rc.left, rc.top, 0);	
-	ar.AddVert(v);
-	v.Set(rc.right, rc.top, 0);
-	ar.AddVert(v);	
-	v.Set(rc.right, rc.bottom, 0);
-	ar.AddVert(v);
-	v.Set(rc.left, rc.bottom, 0);
-	ar.AddVert(v);
-		
-	glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-	
-	glEnableVertexAttribArray(glcon->VertAttrib());
+    SVertArray ar;
+    CVector3<float> v;
+
+    ar.MakeVerts(4);
+
+    v.Set(rc.left, rc.top, 0);
+    ar.AddVert(v);
+    v.Set(rc.right, rc.top, 0);
+    ar.AddVert(v);
+    v.Set(rc.right, rc.bottom, 0);
+    ar.AddVert(v);
+    v.Set(rc.left, rc.bottom, 0);
+    ar.AddVert(v);
+
+    glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+
+    glEnableVertexAttribArray(glcon->VertAttrib());
 
 
-	glDrawArrays(GL_LINE_LOOP, 0, 4);
+    glDrawArrays(GL_LINE_LOOP, 0, 4);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());	
+    glDisableVertexAttribArray(glcon->VertAttrib());
 
- 	checkGlError("DrawFrame"); 	
+    checkGlError("DrawFrame");
 }
-
 
 
 // ---------------------------------------------------------------------------
@@ -378,49 +376,49 @@ void CGL_Basic::DrawFrame(const CGL_Context* glcon, const CRectT<float>& rc)
 
 void CGL_Basic::DrawTextureQuad(const CGL_Context* glcon, float x1, float y1, float x2, float y2)
 {
-	SVertArray ar;
-	CVector3<float> v;
-	CVector2<float> t;
-	
-	ar.MakeVerts(4);
-	ar.MakeTexts(4);
-	
-	v.Set(x1, y1, 0);	
-	t.Set(0.0f, 0.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
-	
-	
-	v.Set(x2, y1, 0);
-	t.Set(1.0f, 0.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
-	
-	
-	v.Set(x2, y2, 0);
-	t.Set(1.0f, 1.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
+    SVertArray ar;
+    CVector3<float> v;
+    CVector2<float> t;
 
-	v.Set(x1, y2, 0);
-	t.Set(0.0f, 1.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
-	
-	glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-  glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
-	
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glEnableVertexAttribArray(glcon->TextAttrib());
-	
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    ar.MakeVerts(4);
+    ar.MakeTexts(4);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
-	glDisableVertexAttribArray(glcon->TextAttrib());
-	
- 	checkGlError("DrawTextureQuad 2");
+    v.Set(x1, y1, 0);
+    t.Set(0.0f, 0.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
 
+
+    v.Set(x2, y1, 0);
+    t.Set(1.0f, 0.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+
+    v.Set(x2, y2, 0);
+    t.Set(1.0f, 1.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+    v.Set(x1, y2, 0);
+    t.Set(0.0f, 1.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+    glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
+
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glEnableVertexAttribArray(glcon->TextAttrib());
+
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
+    glDisableVertexAttribArray(glcon->TextAttrib());
+
+    checkGlError("DrawTextureQuad 2");
 }
+
 
 // ---------------------------------------------------------------------------
 //
@@ -431,8 +429,9 @@ void CGL_Basic::DrawTextureQuad(const CGL_Context* glcon, float x1, float y1, fl
 
 void CGL_Basic::DrawTextureQuad(const CGL_Context* glcon, const CRectT<float>& rc)
 {
-	DrawTextureQuad(glcon, rc.left, rc.top, rc.right, rc.bottom);
+    DrawTextureQuad(glcon, rc.left, rc.top, rc.right, rc.bottom);
 }
+
 
 // ---------------------------------------------------------------------------
 //
@@ -443,58 +442,56 @@ void CGL_Basic::DrawTextureQuad(const CGL_Context* glcon, const CRectT<float>& r
 
 void CGL_Basic::DrawTextureQuadRotated(const CGL_Context* glcon, float x1, float y1, float x2, float y2)
 {
-	SVertArray ar;
-	CVector3<float> v;
-	CVector2<float> t;
-	
-	float w = x2 - x1;
-	float h = y2 - y1;
+    SVertArray ar;
+    CVector3<float> v;
+    CVector2<float> t;
 
-	
-	x2 = x1 + h;
-	y2 = y1 + w;
-	
-	
-	ar.MakeVerts(4);
-	ar.MakeTexts(4);
-	
-	v.Set(x1, y1, 0);	
-	t.Set(0.0f, 1.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
-	
-	
-	v.Set(x2, y1, 0);
-	t.Set(0.0f, 0.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
-	
-	
-	v.Set(x2, y2, 0);
-	t.Set(1.0f, 0.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
+    float w = x2 - x1;
+    float h = y2 - y1;
 
-	v.Set(x1, y2, 0);
-	t.Set(1.0f, 1.0f);
-	ar.AddVert(v);
-	ar.AddText(t);
-	
-	glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-  glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
-	
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glEnableVertexAttribArray(glcon->TextAttrib());
-	
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
-	glDisableVertexAttribArray(glcon->TextAttrib());
-	
- 	checkGlError("DrawTextureQuadRotated");
+    x2 = x1 + h;
+    y2 = y1 + w;
 
+
+    ar.MakeVerts(4);
+    ar.MakeTexts(4);
+
+    v.Set(x1, y1, 0);
+    t.Set(0.0f, 1.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+
+    v.Set(x2, y1, 0);
+    t.Set(0.0f, 0.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+
+    v.Set(x2, y2, 0);
+    t.Set(1.0f, 0.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+    v.Set(x1, y2, 0);
+    t.Set(1.0f, 1.0f);
+    ar.AddVert(v);
+    ar.AddText(t);
+
+    glVertexAttribPointer(glcon->VertAttrib(), 3, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
+
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glEnableVertexAttribArray(glcon->TextAttrib());
+
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
+    glDisableVertexAttribArray(glcon->TextAttrib());
+
+    checkGlError("DrawTextureQuadRotated");
 }
-
 
 
 // ---------------------------------------------------------------------------
@@ -506,76 +503,73 @@ void CGL_Basic::DrawTextureQuadRotated(const CGL_Context* glcon, float x1, float
 
 void CGL_Basic::DrawTextureQuadAngle(const CGL_Context* glcon, const CRectT<float>& vr, const CRectT<float>& tr, float Angle, const CVector2<float>* org1)
 {
+    SVertArray2D ar;
+    CVector2<float> v;
+    CVector2<float> t;
+    CVector2<float> org;
 
-	SVertArray2D ar;
-	CVector2<float> v;
-	CVector2<float> t;
-	CVector2<float> org;
+    ar.MakeVerts(4);
+    ar.MakeTexts(4);
 
-	ar.MakeVerts(4);
-	ar.MakeTexts(4);
-	
-	if (org1 == NULL)
-	{
-		org.x = vr.CenterX();
-		org.y = vr.CenterY();	
-	}
-	else
-	{
-	  org = *org1;
-	}
-	
-	float sinA = sin(DEG_TO_RAD(Angle));
-	float cosA = cos(DEG_TO_RAD(Angle));
-	
+    if (org1 == NULL)
+    {
+        org.x = vr.CenterX();
+        org.y = vr.CenterY();
+    }
+    else
+    {
+        org = *org1;
+    }
 
-	
-
-	v.Set(vr.left, vr.top);
-	v.RotationXY(&org, sinA, cosA);	
-	t.Set(tr.left, tr.top);
-	ar.AddVert(v);
-	ar.AddText(t);
+    float sinA = sin(DEG_TO_RAD(Angle));
+    float cosA = cos(DEG_TO_RAD(Angle));
 
 
-	v.Set(vr.right, vr.top);
-	v.RotationXY(&org, sinA, cosA);	
-	t.Set(tr.right, tr.top);
-	ar.AddVert(v);
-	ar.AddText(t);
+
+    v.Set(vr.left, vr.top);
+    v.RotationXY(&org, sinA, cosA);
+    t.Set(tr.left, tr.top);
+    ar.AddVert(v);
+    ar.AddText(t);
 
 
-	v.Set(vr.right, vr.bottom);
-	v.RotationXY(&org, sinA, cosA);	
-	t.Set(tr.right, tr.bottom);
-	ar.AddVert(v);
-	ar.AddText(t);
-
-	v.Set(vr.left, vr.bottom);
-	v.RotationXY(&org, sinA, cosA);	
-	t.Set(tr.left, tr.bottom);
-	ar.AddVert(v);
-	ar.AddText(t);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    v.Set(vr.right, vr.top);
+    v.RotationXY(&org, sinA, cosA);
+    t.Set(tr.right, tr.top);
+    ar.AddVert(v);
+    ar.AddText(t);
 
 
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-  glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
+    v.Set(vr.right, vr.bottom);
+    v.RotationXY(&org, sinA, cosA);
+    t.Set(tr.right, tr.bottom);
+    ar.AddVert(v);
+    ar.AddText(t);
 
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glEnableVertexAttribArray(glcon->TextAttrib());
+    v.Set(vr.left, vr.bottom);
+    v.RotationXY(&org, sinA, cosA);
+    t.Set(tr.left, tr.bottom);
+    ar.AddVert(v);
+    ar.AddText(t);
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
-	glDisableVertexAttribArray(glcon->TextAttrib());
 
-	glDisable(GL_BLEND);
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
 
- 	checkGlError("DrawTextureQuadAngle");
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glEnableVertexAttribArray(glcon->TextAttrib());
 
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
+    glDisableVertexAttribArray(glcon->TextAttrib());
+
+    glDisable(GL_BLEND);
+
+    checkGlError("DrawTextureQuadAngle");
 }
 
 
@@ -588,65 +582,61 @@ void CGL_Basic::DrawTextureQuadAngle(const CGL_Context* glcon, const CRectT<floa
 
 void CGL_Basic::DrawQuadAngle(const CGL_Context* glcon, const CRectT<float>& vr, float Angle, const CVector2<float>* org1)
 {
+    SVertArray2D ar;
+    CVector2<float> v;
+    CVector2<float> org;
 
-	SVertArray2D ar;
-	CVector2<float> v;
-	CVector2<float> org;
-
-	ar.MakeVerts(4);
-	
-	
-	if (org1 == NULL)
-	{
-		org.x = vr.CenterX();
-		org.y = vr.CenterY();	
-	}
-	else
-	{
-	  org = *org1;
-	}
-	
-	float sinA = sin(DEG_TO_RAD(Angle));
-	float cosA = cos(DEG_TO_RAD(Angle));
-	
-
-	
-
-	v.Set(vr.left, vr.top);
-	v.RotationXY(&org, sinA, cosA);	
-	ar.AddVert(v);
+    ar.MakeVerts(4);
 
 
-	v.Set(vr.right, vr.top);
-	v.RotationXY(&org, sinA, cosA);	
-	ar.AddVert(v);
+    if (org1 == NULL)
+    {
+        org.x = vr.CenterX();
+        org.y = vr.CenterY();
+    }
+    else
+    {
+        org = *org1;
+    }
+
+    float sinA = sin(DEG_TO_RAD(Angle));
+    float cosA = cos(DEG_TO_RAD(Angle));
 
 
-	v.Set(vr.right, vr.bottom);
-	v.RotationXY(&org, sinA, cosA);	
-	ar.AddVert(v);
-	
 
-	v.Set(vr.left, vr.bottom);
-	v.RotationXY(&org, sinA, cosA);		
-	ar.AddVert(v);
-	
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    v.Set(vr.left, vr.top);
+    v.RotationXY(&org, sinA, cosA);
+    ar.AddVert(v);
 
 
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());  
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
- 	glDisableVertexAttribArray(glcon->VertAttrib());
+    v.Set(vr.right, vr.top);
+    v.RotationXY(&org, sinA, cosA);
+    ar.AddVert(v);
 
-	glDisable(GL_BLEND);
 
- 	checkGlError("DrawQuadAngle");
+    v.Set(vr.right, vr.bottom);
+    v.RotationXY(&org, sinA, cosA);
+    ar.AddVert(v);
 
+
+    v.Set(vr.left, vr.bottom);
+    v.RotationXY(&org, sinA, cosA);
+    ar.AddVert(v);
+
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDisableVertexAttribArray(glcon->VertAttrib());
+
+    glDisable(GL_BLEND);
+
+    checkGlError("DrawQuadAngle");
 }
-
 
 
 // ---------------------------------------------------------------------------
@@ -658,57 +648,54 @@ void CGL_Basic::DrawQuadAngle(const CGL_Context* glcon, const CRectT<float>& vr,
 
 void CGL_Basic::DrawTextureQuad(const CGL_Context* glcon, const CRectT<float>& vr, const CRectT<float>& tr)
 {
+    SVertArray2D ar;
+    CVector2<float> v;
+    CVector2<float> t;
 
-	SVertArray2D ar;
-	CVector2<float> v;
-	CVector2<float> t;
+    ar.MakeVerts(4);
+    ar.MakeTexts(4);
 
-	ar.MakeVerts(4);
-	ar.MakeTexts(4);
-
-	v.Set(vr.left, vr.top);
-	t.Set(tr.left, tr.top);
-	ar.AddVert(v);
-	ar.AddText(t);
-
-
-	v.Set(vr.right, vr.top);
-	t.Set(tr.right, tr.top);
-	ar.AddVert(v);
-	ar.AddText(t);
+    v.Set(vr.left, vr.top);
+    t.Set(tr.left, tr.top);
+    ar.AddVert(v);
+    ar.AddText(t);
 
 
-	v.Set(vr.right, vr.bottom);
-	t.Set(tr.right, tr.bottom);
-	ar.AddVert(v);
-	ar.AddText(t);
-
-	v.Set(vr.left, vr.bottom);
-	t.Set(tr.left, tr.bottom);
-	ar.AddVert(v);
-	ar.AddText(t);
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    v.Set(vr.right, vr.top);
+    t.Set(tr.right, tr.top);
+    ar.AddVert(v);
+    ar.AddText(t);
 
 
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
-  glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
+    v.Set(vr.right, vr.bottom);
+    t.Set(tr.right, tr.bottom);
+    ar.AddVert(v);
+    ar.AddText(t);
 
-	glEnableVertexAttribArray(glcon->VertAttrib());
-	glEnableVertexAttribArray(glcon->TextAttrib());
+    v.Set(vr.left, vr.bottom);
+    t.Set(tr.left, tr.bottom);
+    ar.AddVert(v);
+    ar.AddText(t);
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
-	glDisableVertexAttribArray(glcon->TextAttrib());
 
-	glDisable(GL_BLEND);
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    glVertexAttribPointer(glcon->TextAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mText->v());
 
-	checkGlError("DrawTextureQuad 1");
+    glEnableVertexAttribArray(glcon->VertAttrib());
+    glEnableVertexAttribArray(glcon->TextAttrib());
 
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
+    glDisableVertexAttribArray(glcon->TextAttrib());
+
+    glDisable(GL_BLEND);
+
+    checkGlError("DrawTextureQuad 1");
 }
-
 
 
 // ---------------------------------------------------------------------------
@@ -719,50 +706,47 @@ void CGL_Basic::DrawTextureQuad(const CGL_Context* glcon, const CRectT<float>& v
 // ---------------------------------------------------------------------------
 
 
-void CGL_Basic::DrawDisk(const CGL_Context* glcon, 
-  float Radius, 
-  float a_start,                      // Start-Winkel in Grad 0..360
-  float a_size,                       // Groesse in Grad (0..360)
-  const CVector2<float>& origin, 
-  int segs)
+void CGL_Basic::DrawDisk(const CGL_Context* glcon,
+    float Radius,
+    float a_start,                      // Start-Winkel in Grad 0..360
+    float a_size,                       // Groesse in Grad (0..360)
+    const CVector2<float>& origin,
+    int segs)
 {
+    SVertArray2D ar;
+    CVector2<float> v;
 
-	SVertArray2D ar;
-	CVector2<float> v;
+    ar.MakeVerts(segs+2);
 
-	ar.MakeVerts(segs+2);
-	
-	float a_start_rad = DEG_TO_RAD(a_start);
-	float a_size_rad  = DEG_TO_RAD(a_size);
-	float step_rad    = a_size_rad / segs;
+    float a_start_rad = DEG_TO_RAD(a_start);
+    float a_size_rad = DEG_TO_RAD(a_size);
+    float step_rad = a_size_rad / segs;
 
-	//glDisable(GL_CULL_FACE);
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CW);
-	
-	ar.AddVert(origin);		
-	
-	for (int i = 0; i <=  segs; i++)
-	{
-	  v.x = origin.x + cos(a_start_rad) * Radius;
-	  v.y = origin.y + sin(a_start_rad) * Radius;
-		ar.AddVert(v);
-		a_start_rad += step_rad;
-	}
-	
+    //glDisable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CW);
 
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    ar.AddVert(origin);
 
-	glEnableVertexAttribArray(glcon->VertAttrib());
+    for (int i = 0; i <= segs; i++)
+    {
+        v.x = origin.x + cos(a_start_rad) * Radius;
+        v.y = origin.y + sin(a_start_rad) * Radius;
+        ar.AddVert(v);
+        a_start_rad += step_rad;
+    }
 
-	glDrawArrays(GL_TRIANGLE_FAN, 0, ar.mCount);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
-	
-	glFrontFace(GL_CCW);
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
 
+    glEnableVertexAttribArray(glcon->VertAttrib());
+
+    glDrawArrays(GL_TRIANGLE_FAN, 0, ar.mCount);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
+
+    glFrontFace(GL_CCW);
 }
-
 
 
 // ---------------------------------------------------------------------------
@@ -773,49 +757,46 @@ void CGL_Basic::DrawDisk(const CGL_Context* glcon,
 // ---------------------------------------------------------------------------
 
 
-void CGL_Basic::DrawRing(const CGL_Context* glcon, 
-  float Radius_inner, 
-  float Radius_outer, 
-  float a_start,                      // Start-Winkel in Grad 0..360
-  float a_size,                       // Groesse in Grad (0..360)
-  const CVector2<float>& origin, 
-  int segs)
+void CGL_Basic::DrawRing(const CGL_Context* glcon,
+    float Radius_inner,
+    float Radius_outer,
+    float a_start,                      // Start-Winkel in Grad 0..360
+    float a_size,                       // Groesse in Grad (0..360)
+    const CVector2<float>& origin,
+    int segs)
 {
+    SVertArray2D ar;
+    CVector2<float> v;
 
-	SVertArray2D ar;
-	CVector2<float> v;
+    ar.MakeVerts((segs+1) * 2);
 
-	ar.MakeVerts((segs+1) * 2);
-	
-	float a_start_rad = DEG_TO_RAD(a_start);
-	float a_size_rad  = DEG_TO_RAD(a_size);
-	float step_rad    = a_size_rad / segs;
+    float a_start_rad = DEG_TO_RAD(a_start);
+    float a_size_rad = DEG_TO_RAD(a_size);
+    float step_rad = a_size_rad / segs;
 
-	
-	for (int i = 0; i <=  segs; i++)
-	{
-	  v.x = origin.x + cos(a_start_rad) * Radius_inner;
-	  v.y = origin.y + sin(a_start_rad) * Radius_inner;
-		ar.AddVert(v);
 
-	  v.x = origin.x + cos(a_start_rad) * Radius_outer;
-	  v.y = origin.y + sin(a_start_rad) * Radius_outer;
-		ar.AddVert(v);	
-		
-		a_start_rad += step_rad;
-	}
-	
+    for (int i = 0; i <= segs; i++)
+    {
+        v.x = origin.x + cos(a_start_rad) * Radius_inner;
+        v.y = origin.y + sin(a_start_rad) * Radius_inner;
+        ar.AddVert(v);
 
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+        v.x = origin.x + cos(a_start_rad) * Radius_outer;
+        v.y = origin.y + sin(a_start_rad) * Radius_outer;
+        ar.AddVert(v);
 
-	glEnableVertexAttribArray(glcon->VertAttrib());
+        a_start_rad += step_rad;
+    }
 
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, ar.mCount);
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
 
+    glEnableVertexAttribArray(glcon->VertAttrib());
+
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, ar.mCount);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
 }
-
 
 
 // ---------------------------------------------------------------------------
@@ -826,42 +807,37 @@ void CGL_Basic::DrawRing(const CGL_Context* glcon,
 // ---------------------------------------------------------------------------
 
 
-void CGL_Basic::DrawCircle(const CGL_Context* glcon, 
-  float Radius, 
-  float a_start,                      // Start-Winkel in Grad 0..360
-  float a_size,                       // Groesse in Grad (0..360)
-  const CVector2<float>& origin, 
-  int segs)
+void CGL_Basic::DrawCircle(const CGL_Context* glcon,
+    float Radius,
+    float a_start,                      // Start-Winkel in Grad 0..360
+    float a_size,                       // Groesse in Grad (0..360)
+    const CVector2<float>& origin,
+    int segs)
 {
+    SVertArray2D ar;
+    CVector2<float> v;
 
-	SVertArray2D ar;
-	CVector2<float> v;
+    ar.MakeVerts(segs+1);
 
-	ar.MakeVerts(segs+1);
-	
-	float a_start_rad = DEG_TO_RAD(a_start);
-	float a_size_rad  = DEG_TO_RAD(a_size);
-	float step_rad    = a_size_rad / segs;
+    float a_start_rad = DEG_TO_RAD(a_start);
+    float a_size_rad = DEG_TO_RAD(a_size);
+    float step_rad = a_size_rad / segs;
 
-	
-	for (int i = 0; i <=  segs; i++)
-	{
-	  v.x = origin.x + cos(a_start_rad) * Radius;
-	  v.y = origin.y + sin(a_start_rad) * Radius;
-		ar.AddVert(v);
-		a_start_rad += step_rad;
-	}
-	
 
-	glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
+    for (int i = 0; i <= segs; i++)
+    {
+        v.x = origin.x + cos(a_start_rad) * Radius;
+        v.y = origin.y + sin(a_start_rad) * Radius;
+        ar.AddVert(v);
+        a_start_rad += step_rad;
+    }
 
-	glEnableVertexAttribArray(glcon->VertAttrib());
 
-	glDrawArrays(GL_LINE_STRIP, 0, ar.mCount);
+    glVertexAttribPointer(glcon->VertAttrib(), 2, GL_FLOAT, GL_FALSE, 0, ar.mVert->v());
 
- 	glDisableVertexAttribArray(glcon->VertAttrib());
+    glEnableVertexAttribArray(glcon->VertAttrib());
 
+    glDrawArrays(GL_LINE_STRIP, 0, ar.mCount);
+
+    glDisableVertexAttribArray(glcon->VertAttrib());
 }
-
-
-

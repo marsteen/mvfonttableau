@@ -18,11 +18,10 @@
 
 namespace NUtf2
 {
-	unsigned int Utf8_to_Utf32(const unsigned char* Utf8, int* Size);
-	std::string Utf8_to_Ansi(const unsigned char* Utf8, int* Errors);
-	std::string Ansi_to_Utf8(const unsigned char* Utf8, int* Errors);
-	std::string ResolveAnsiUmlauteString(const std::string& s);
-
+    unsigned int Utf8_to_Utf32(const unsigned char* Utf8, int* Size);
+    std::string Utf8_to_Ansi(const unsigned char* Utf8, int* Errors);
+    std::string Ansi_to_Utf8(const unsigned char* Utf8, int* Errors);
+    std::string ResolveAnsiUmlauteString(const std::string& s);
 }
 
 #endif
