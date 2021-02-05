@@ -49,7 +49,13 @@ CFILES =   freetype/lib/PnglibInterface.c
 #
 #************************************************************
 
-LINKLIBS    = -lGL `pkg-config glfw3 --static --libs` -lfreetype -lGLEW -lpng16 -lz
+# LINUX
+#LINKLIBS    = -lGL `pkg-config glfw3 --static --libs` -lfreetype -lGLEW -lpng16 -lz
+
+# MSYS
+LINKLIBS    = -lopengl32 `pkg-config glfw3 --static --libs` -lfreetype -lglew32 -lpng -lz
+
+
 
 #************************************************************
 #
@@ -60,10 +66,10 @@ LINKLIBS    = -lGL `pkg-config glfw3 --static --libs` -lfreetype -lGLEW -lpng16 
 # -s  = remove symboltables
 #
 #************************************************************
-
+INCCMD = -I/mingw64/include/freetype2 -I./freetype/include
 #CCFLAGS  = -mthreads -mtune=i686 -O3 -s -I$(LIBINCLUDE) -L$(LIBBASE)
-CFLAGS   = -O2 -I./freetype/include
-CCFLAGS  = -O2 -I./freetype/include -I/usr/include/freetype2
+CFLAGS   = -O2 $(INCCMD)
+CCFLAGS  = -O2 $(INCCMD) -I/usr/include/freetype2
 
 #************************************************************
 #
