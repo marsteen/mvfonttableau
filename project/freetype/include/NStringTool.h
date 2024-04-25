@@ -69,19 +69,8 @@ namespace NStringTool
     int Contains(const std::string& str1, const std::string& str2);
     std::string Pathname(const std::string& FilenameStr, char PathDiff);
 
-
-
     void Trim(stringvector& sv, const char* trimChars);
     void TrimValid(stringvector& sv, const char* validChars);
-
-    template<typename T>
-    std::string toString(T i)
-    {
-        //std::stringstream istr;
-        //istr <<  i;
-        //return istr.str();
-    }
-
 
     template<typename T>
     T Cast(const std::string& str)

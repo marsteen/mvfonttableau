@@ -23,7 +23,7 @@
 #include <CGL_Context.h>
 #include <NStringTool.h>
 #include <CGL_FrameBuffer.h>
-#include <ft2build.h>
+#include <freetype2/ft2build.h>
 #include FT_FREETYPE_H
 
 

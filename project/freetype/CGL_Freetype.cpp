@@ -18,7 +18,7 @@
 
 #include <CGL_Texture.h>
 
-#include <ft2build.h>
+#include <freetype2/ft2build.h>
 #include FT_FREETYPE_H
 #include <freetype/ftbitmap.h>
 #include <NGlobalLog.h>

@@ -130,7 +130,7 @@ class CFileIO
         template<typename Tobject>
         bool WriteObjectArray(const Tobject* obj, int Count)
         {
-            WriteBytes(obj, sizeof(Tobject) * Count);
+            return WriteBytes(obj, sizeof(Tobject) * Count);
         }
 
 
