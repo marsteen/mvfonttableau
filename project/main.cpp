@@ -104,10 +104,10 @@ int main(int argc, char* argv[])
         CRectT<float>* rc = new CRectT<float>[256];
         memset(rc, 0, sizeof(CRectT<float>) * 256);
 
-        std::string BaseName = NStringTool::FileBasename(argv[1]) + +"_" + argv[2];
-        std::string RectFile = BaseName + ".rects";
-        std::string BinFile = BaseName + ".bin";
-        std::string TableauFile = BaseName + ".png";
+        std::string BaseName    = NStringTool::FileBasename(argv[1]) + +"_" + argv[2];
+        std::string RectFile    = NStringTool::ExtractFilename(BaseName + ".rects");
+        std::string BinFile     = NStringTool::ExtractFilename(BaseName + ".bin");
+        std::string TableauFile = NStringTool::ExtractFilename(BaseName + ".png");
 
         cout << "TableauFile=" << TableauFile << endl;
 

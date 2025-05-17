@@ -17,6 +17,10 @@ include_directories(
 )
 
 find_package(Freetype REQUIRED)
+include_directories(${Freetype_INCLUDE_DIR})
+
+find_package(glfw3 REQUIRED)
+include_directories(${glfw3_INCLUDE_DIR})
 
 
 add_executable(${CMAKE_PROJECT_NAME}
@@ -61,6 +65,8 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         GL
         GLU
         GLEW
+        glfw
+        freetype
         png)
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     #
